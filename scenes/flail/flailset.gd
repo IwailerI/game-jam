@@ -6,7 +6,7 @@ const FLAIL_SCENE := preload("res://scenes/flail/flail_ball.tscn")
 
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	for child: Node in get_children():
 		var fb := child as FlailBall
 		if fb == null or fb.parent != null:

@@ -1,24 +1,31 @@
 ## invariant: parent must be initialized and ready or null
+
 class_name FlailBall
 extends Node2D
 
 
 signal position_updated
 
-
 @export var rotation_speed: float = PI
 @export var starting_rotation_angle: float = 0.0
 @export var radius: float
 @export var parent: FlailBall
+@export var damage: int = 50
+@export var knockback: float = 400.0
 
 var _rotation_angle: float = 0.0
 
 @onready var _line: Line2D = $Line2D
 @onready var _sprite: Sprite2D = $Sprite2D
+@onready var _hurt_box: Area2D = $HurtBox
 
 
 func _ready() -> void:
 	_rotation_angle = starting_rotation_angle
+
+	_hurt_box.body_entered.connect(_on_enemy_entered)
+	_hurt_box.area_entered.connect(_on_enemy_entered)
+
 	if parent != null:
 		(func () -> void:
 			if not parent.is_node_ready():
@@ -27,7 +34,7 @@ func _ready() -> void:
 		).call_deferred()
 	else:
 		hide() # we are root
-		# TODO: remove collision
+		_hurt_box.queue_free()
 
 
 func _physics_process(_delta: float) -> void:
@@ -54,3 +61,18 @@ func _update_position() -> void:
 
 func force_update_position() -> void:
 	_update_position()
+
+
+func _on_enemy_entered(node: Node2D) -> void:
+	var enemy := node as Enemy
+	if not is_instance_valid(enemy):
+		return
+
+	enemy.health_component.damage(damage)
+
+	var vel := _get_head_direction() * knockback
+	enemy.apply_knockback(vel)
+
+
+func _get_head_direction() -> Vector2:
+	return Vector2.from_angle(_rotation_angle + TAU / 4 * signf(rotation_speed))

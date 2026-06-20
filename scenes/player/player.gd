@@ -5,8 +5,11 @@ extends CharacterBody2D
 @export var speed: float = 150.0
 @export var acceleration: float = 1800.0
 
-
 @onready var health_component: HealthComponent = $HealthComponent
+
+
+static func get_instance() -> Player:
+	return (Engine.get_main_loop() as SceneTree).get_first_node_in_group(&"player")
 
 
 func _ready() -> void:
@@ -16,7 +19,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	
+
 	velocity = velocity.move_toward(input_dir * speed, acceleration * delta)
 
 	move_and_slide()

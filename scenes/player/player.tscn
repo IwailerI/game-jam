@@ -6,7 +6,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x7p2l"]
 
-[node name="Player" type="CharacterBody2D" unique_id=656747177]
+[node name="Player" type="CharacterBody2D" unique_id=656747177 groups=["player"]]
 collision_mask = 4
 script = ExtResource("1_dovo2")
 

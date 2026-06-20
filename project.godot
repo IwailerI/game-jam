@@ -15,6 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="pixelart_template"
+run/main_scene="uid://mlfopegdrvw6"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://ptd0sa7mmdpi"
 
@@ -81,6 +82,7 @@ folder_colors={
 [global_group]
 
 settings_audio=""
+player="The player"
 
 [gui]
 

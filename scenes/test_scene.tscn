@@ -1,15 +1,33 @@
 [gd_scene format=3 uid="uid://mlfopegdrvw6"]
 
-[ext_resource type="Script" uid="uid://cau4hs0c4s1p8" path="res://scenes/audio/ambient_audio_player/ambient_audio_player.gd" id="8_rnaij"]
-[ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="9_h3xc6"]
+[ext_resource type="PackedScene" uid="uid://mqufp14bsu2u" path="res://scenes/player/player.tscn" id="1_g7g4h"]
+[ext_resource type="Script" uid="uid://buuegih5ba168" path="res://scenes/flail/flailset.gd" id="2_7ddre"]
+[ext_resource type="PackedScene" uid="uid://gbsgy7a03y4m" path="res://scenes/enemy/enemy.tscn" id="2_j8ivh"]
+[ext_resource type="PackedScene" uid="uid://btfpk2cklm2nr" path="res://scenes/flail/flail_ball.tscn" id="3_qjeyg"]
 
 [node name="TestScene" type="Node2D" unique_id=988521978]
 
-[node name="AmbientAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1179099831]
-bus = &"SFX_panning"
-script = ExtResource("8_rnaij")
-_enable_bus_panning = true
-metadata/_custom_type_script = "uid://cau4hs0c4s1p8"
+[node name="Player" parent="." unique_id=656747177 instance=ExtResource("1_g7g4h")]
 
-[node name="PauseMenu" parent="." unique_id=840180984 instance=ExtResource("9_h3xc6")]
-visible = false
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=710772741]
+
+[node name="FlailSet" type="Node2D" parent="Player" unique_id=860355327]
+script = ExtResource("2_7ddre")
+metadata/_custom_type_script = "uid://buuegih5ba168"
+
+[node name="RootFlail" parent="Player/FlailSet" unique_id=1956772644 instance=ExtResource("3_qjeyg")]
+position = Vector2(0, -19)
+
+[node name="FlailBall2" parent="Player/FlailSet" unique_id=2025905012 node_paths=PackedStringArray("parent") instance=ExtResource("3_qjeyg")]
+position = Vector2(59, 57)
+radius = 60.0
+parent = NodePath("../RootFlail")
+
+[node name="Enemy" parent="." unique_id=1871860269 instance=ExtResource("2_j8ivh")]
+position = Vector2(165, -16)
+
+[node name="Enemy2" parent="." unique_id=1750454003 instance=ExtResource("2_j8ivh")]
+position = Vector2(192, 101)
+
+[node name="Enemy3" parent="." unique_id=1917488469 instance=ExtResource("2_j8ivh")]
+position = Vector2(-283, -138)
