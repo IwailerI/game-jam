@@ -14,6 +14,7 @@ signal position_updated
 var _rotation_angle: float = 0.0
 
 @onready var _line: Line2D = $Line2D
+@onready var _sprite: Sprite2D = $Sprite2D
 
 
 func _ready() -> void:
@@ -45,6 +46,8 @@ func _update_position() -> void:
 
 	global_position = parent.global_position + Vector2.from_angle(_rotation_angle) * radius
 	_line.points = PackedVector2Array([Vector2.ZERO, to_local(parent.global_position)])
+
+	_sprite.look_at(parent.global_position)
 
 	position_updated.emit()
 
