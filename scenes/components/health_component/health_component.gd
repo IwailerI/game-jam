@@ -2,8 +2,8 @@ class_name HealthComponent
 extends Node
 
 
-signal healed(added_hp: int)
-signal damaged(taken_dmg: int)
+signal healed(amount: int)
+signal damaged(amount: int)
 signal died
 
 @export var initial_health: int = 100
