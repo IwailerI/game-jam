@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 @export var damage: int = 10
 
-@export var aditional_velocity: Vector2
+@export var knockback_velocity: Vector2
 
 var player: Node
 
@@ -21,6 +21,7 @@ func _physics_process(delta: float) -> void:
 	var direction: Vector2 = (player.global_position - global_position).normalized()
 	
 	velocity = direction * speed
+	velocity += knockback_velocity
 	
 	move_and_slide()
 	
