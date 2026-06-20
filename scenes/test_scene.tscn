@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://buuegih5ba168" path="res://scenes/flail/flailset.gd" id="2_7ddre"]
 [ext_resource type="PackedScene" uid="uid://gbsgy7a03y4m" path="res://scenes/enemy/enemy.tscn" id="2_j8ivh"]
 [ext_resource type="PackedScene" uid="uid://btfpk2cklm2nr" path="res://scenes/flail/flail_ball.tscn" id="3_qjeyg"]
-[ext_resource type="PackedScene" uid="uid://bqmaaklxptuwx" path="res://scenes/shooting_enemy/shooting_enemy.tscn" id="5_qjeyg"]
+[ext_resource type="PackedScene" uid="uid://bqmaaklxptuwx" path="res://scenes/shooting_enemy/shooting_enemy.tscn" id="5_3qnke"]
+[ext_resource type="PackedScene" uid="uid://1y5yme0armh" path="res://scenes/flail/upgrade_ui.tscn" id="5_qjeyg"]
 
 [node name="TestScene" type="Node2D" unique_id=988521978]
 
@@ -21,7 +22,8 @@ position = Vector2(0, -19)
 
 [node name="FlailBall2" parent="Player/FlailSet" unique_id=2025905012 node_paths=PackedStringArray("parent") instance=ExtResource("3_qjeyg")]
 position = Vector2(59, 57)
-radius = 60.0
+rotation_speed = 1.571
+radius = 100.0
 parent = NodePath("../RootFlail")
 
 [node name="Enemy" parent="." unique_id=1871860269 instance=ExtResource("2_j8ivh")]
@@ -33,4 +35,11 @@ position = Vector2(192, 101)
 [node name="Enemy3" parent="." unique_id=1917488469 instance=ExtResource("2_j8ivh")]
 position = Vector2(-283, -138)
 
-[node name="ShootingEnemy" parent="." unique_id=2101848435 instance=ExtResource("5_qjeyg")]
+[node name="ShootingEnemy" parent="." unique_id=1156549773 instance=ExtResource("5_3qnke")]
+position = Vector2(-100, 72)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=279880355]
+
+[node name="UpgradeUI" parent="CanvasLayer" unique_id=491650584 instance=ExtResource("5_qjeyg")]
+visible = false
+offset_top = -22.0

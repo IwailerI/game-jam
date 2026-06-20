@@ -11,30 +11,35 @@ signal position_updated
 @export var radius: float
 @export var parent: FlailBall
 @export var damage: int = 50
-@export var knockback: float = 400.0
 
 var _rotation_angle: float = 0.0
+var _is_selected: bool = false
 
 @onready var _line: Line2D = $Line2D
 @onready var _sprite: Sprite2D = $Sprite2D
-@onready var _hurt_box: Area2D = $HurtBox
+
+@onready var hurt_box: Area2D = $HurtBox
 
 
 func _ready() -> void:
 	_rotation_angle = starting_rotation_angle
 
-	_hurt_box.body_entered.connect(_on_enemy_entered)
-	_hurt_box.area_entered.connect(_on_enemy_entered)
 
 	if parent != null:
-		(func () -> void:
-			if not parent.is_node_ready():
-				await parent.ready
+		hurt_box.body_entered.connect(_on_enemy_entered)
+		hurt_box.area_entered.connect(_on_enemy_entered)
+
+		if parent.is_node_ready():
 			parent.position_updated.connect(_update_position)
-		).call_deferred()
+		else:
+			(func () -> void:
+				if not parent.is_node_ready():
+					await parent.ready
+				parent.position_updated.connect(_update_position)
+			).call_deferred()
 	else:
-		hide() # we are root
-		_hurt_box.queue_free()
+		_sprite.hide()
+		_line.hide()
 
 
 func _physics_process(_delta: float) -> void:
@@ -69,9 +74,22 @@ func _on_enemy_entered(enemy: Node2D) -> void:
 
 	enemy.health_component.damage(damage)
 
-	var vel := _get_head_direction() * knockback
-	enemy.apply_knockback(vel)
+	var vel := _get_head_direction()
+	var lin_vel := rotation_speed * radius
+	enemy.apply_knockback(vel * lin_vel)
 
 
 func _get_head_direction() -> Vector2:
 	return Vector2.from_angle(_rotation_angle + TAU / 4 * signf(rotation_speed))
+
+
+func set_selected(v: bool) -> void:
+	_is_selected = v
+	queue_redraw()
+
+
+func _draw() -> void:
+	if not _is_selected:
+		return
+
+	draw_circle(Vector2.ZERO, 16, Color.BLUE, false)

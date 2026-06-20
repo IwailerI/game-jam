@@ -11,10 +11,12 @@ region = Rect2(0, 0, 20, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_qe3wl"]
 radius = 11.0
 
-[node name="FlailBall" type="Node2D" unique_id=1956772644]
+[node name="FlailBall" type="Node2D" unique_id=1956772644 groups=["flailball"]]
 script = ExtResource("1_il477")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=450649165]
+z_index = -1
+z_as_relative = false
 texture_repeat = 2
 points = PackedVector2Array(3, 1, 178, -44)
 width = 6.0
@@ -26,8 +28,9 @@ texture_mode = 1
 texture = SubResource("AtlasTexture_qe3wl")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=874236060]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 2
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1281145163]
 shape = SubResource("CircleShape2D_qe3wl")
