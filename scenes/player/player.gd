@@ -26,8 +26,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_damaged(amount: int) -> void:
-	print("player took ", amount, " damage")
+	print_debug("player took ", amount, " damage")
 
 
 func _on_died() -> void:
-	print("game over")
+	print_debug("game over")
