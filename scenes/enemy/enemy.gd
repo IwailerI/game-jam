@@ -21,8 +21,7 @@ func _ready() -> void:
 	dmg_area.body_exited.connect(_on_dmg_body_exited)
 
 	if not target.is_empty():
-		player = get_node(target)
-	
+		player = get_node(target)	
 
 
 func _physics_process(delta: float) -> void:
@@ -31,7 +30,11 @@ func _physics_process(delta: float) -> void:
 	
 	var direction: Vector2 = (player.global_position - global_position).normalized()
 	
-	velocity = direction * speed
+	if (player.global_position - global_position).length_squared() >= 2:
+		velocity = direction * speed
+	else:
+		velocity = Vector2.ZERO
+
 	velocity += knockback_velocity
 	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_fading * delta)
 	
