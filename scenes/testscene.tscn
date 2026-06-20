@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://bpvf4bu7jh7s2"]
+[gd_scene format=3 uid="uid://bt6fyd8jr3lip"]
 
 [ext_resource type="PackedScene" uid="uid://btfpk2cklm2nr" path="res://scenes/flail/flail_ball.tscn" id="1_7y2xs"]
 [ext_resource type="Script" uid="uid://buuegih5ba168" path="res://scenes/flail/flailset.gd" id="1_r32pp"]
+[ext_resource type="PackedScene" uid="uid://gbsgy7a03y4m" path="res://scenes/enemy/enemy.tscn" id="3_65iv0"]
 
 [node name="Testscene" type="Node2D" unique_id=1058412657]
 
@@ -22,3 +23,7 @@ position = Vector2(227, 240)
 rotation_speed = -1.375
 radius = 40.0
 parent = NodePath("../FlailBall2")
+
+[node name="Enemy" parent="." unique_id=1871860269 instance=ExtResource("3_65iv0")]
+position = Vector2(568, 158)
+target = NodePath("../FlailSet/FlailBall3")

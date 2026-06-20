@@ -1,7 +1,12 @@
+class_name Enemy
 extends CharacterBody2D
 
 @export var speed: float = 120.0
 @export var target: NodePath
+
+@export var damage: int = 10
+
+@export var aditional_velocity: Vector2
 
 var player: Node
 
