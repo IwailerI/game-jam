@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dod8chnx3drsv" path="res://scenes/components/health_component/health_component.tscn" id="4_4lu5f"]
 [ext_resource type="Texture2D" uid="uid://vyepk6fqjo6p" path="res://assets/art/chell.png" id="5_grxb5"]
 [ext_resource type="Texture2D" uid="uid://dle3mwdxlc0vw" path="res://assets/art/boom_sheet.png" id="6_grxb5"]
+[ext_resource type="Texture2D" uid="uid://ckrfbblmtvt6i" path="res://assets/art/shaddow.png" id="7_1pg28"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5l1oh"]
 bounce = 0.9
@@ -131,6 +132,13 @@ position = Vector2(0, 16)
 sprite_frames = SubResource("SpriteFrames_djf8j")
 frame = 5
 frame_progress = 1.0
+
+[node name="Shadow" type="Sprite2D" parent="Player/Sprite2D" unique_id=1410988615]
+modulate = Color(0.105882354, 0.105882354, 0.105882354, 0.46666667)
+z_index = -1
+z_as_relative = false
+position = Vector2(0, 14)
+texture = ExtResource("7_1pg28")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1295743146]
 shape = SubResource("CircleShape2D_ew8pg")

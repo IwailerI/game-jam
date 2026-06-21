@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://mh35do01t4q" path="res://scenes/enemy/enemy.gd" id="1_4a83h"]
 [ext_resource type="PackedScene" uid="uid://dod8chnx3drsv" path="res://scenes/components/health_component/health_component.tscn" id="2_40wdo"]
 [ext_resource type="Texture2D" uid="uid://cl148x8e0tt8p" path="res://assets/art/all_enemies.png" id="3_40wdo"]
+[ext_resource type="Texture2D" uid="uid://ckrfbblmtvt6i" path="res://assets/art/shaddow.png" id="4_tjssy"]
 
 [sub_resource type="Animation" id="Animation_tjssy"]
 length = 0.001
@@ -68,3 +69,10 @@ offset = Vector2(-5, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1280122558]
 shape = SubResource("CapsuleShape2D_40wdo")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=818558219]
+modulate = Color(0.105882354, 0.105882354, 0.105882354, 0.46666667)
+z_index = -1
+z_as_relative = false
+position = Vector2(0, 16)
+texture = ExtResource("4_tjssy")
