@@ -19,6 +19,11 @@ static func get_instance() -> ChainAndBalls:
 	return cnb
 
 
+func _ready() -> void:
+	health_component.died.connect(_on_died)
+	health_component.damaged.connect(_on_damaged)
+
+
 func _physics_process(_delta: float) -> void:
 	flail.freeze = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	player.freeze = Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
@@ -71,3 +76,11 @@ func _apply_constaint() -> void:
 
 	player.apply_impulse(-impulse * p_bias)
 	flail.apply_impulse(impulse * (1 - p_bias))
+
+
+func _on_damaged(amount: int) -> void:
+	print("player took ", amount, " damage")
+
+
+func _on_died() -> void:
+	print("game over")
