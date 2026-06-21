@@ -72,8 +72,8 @@ func _load_cur_wave() -> void:
 	else:
 		_load_wave(waves[_cur_wave_idx])
 
-	print("[wave #%s started %s] duration: %s, budget: %s, enemies spawned: %s" %
-		[_cur_wave_idx, ("(eternal wave)" if _cur_wave_idx >= waves.size() else ""), _cur_wave.duration, _cur_wave.budget, _spawn_entries.size()])
+	print("[wave #%s started%s] duration: %s, budget: %s, enemies spawned: %s" %
+		[_cur_wave_idx, (" (eternal wave)" if _cur_wave_idx >= waves.size() else ""), _cur_wave.duration, _cur_wave.budget, _spawn_entries.size()])
 
 
 func _load_wave(wave: Wave) -> void:
