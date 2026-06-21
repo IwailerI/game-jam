@@ -1,6 +1,7 @@
 class_name ChainAndBalls
 extends Node2D
 
+const MAX_DIST := 50.0
 
 @export var force_p: float = 100.0
 @export var force_f: float = 100.0
@@ -35,7 +36,9 @@ func _physics_process(_delta: float) -> void:
 
 	if player.freeze and not flail.freeze:
 		player.linear_velocity = Vector2.ZERO
-		flail.apply_central_force((get_global_mouse_position() - flail.global_position).normalized() * force_f)
+		var dist_origin_mouse := (get_global_mouse_position() - player.global_position).length()
+		var target_pos: Vector2 = (get_global_mouse_position() - player.global_position).normalized() * min(dist_origin_mouse, MAX_DIST) + player.global_position
+		flail.apply_central_force((target_pos - flail.global_position).normalized() * force_f)
 	elif not player.freeze and flail.freeze:
 		flail.linear_velocity = Vector2.ZERO
 		player.apply_central_force((get_global_mouse_position() - player.global_position).normalized() * force_p)
@@ -47,10 +50,18 @@ func _physics_process(_delta: float) -> void:
 		chain.to_local(flail.global_position),
 	])
 
+	queue_redraw()
+
+func _draw() -> void:
+	if player.freeze and not flail.freeze:
+		player.linear_velocity = Vector2.ZERO
+		var dist_origin_mouse := (get_global_mouse_position() - player.global_position).length()
+		var target_pos: Vector2 = (get_global_mouse_position() - player.global_position).normalized() * min(dist_origin_mouse, MAX_DIST) + player.global_position
+		draw_line(to_local(player.global_position), to_local(target_pos), Color.ORANGE)
+		draw_line(to_local(flail.global_position), to_local(target_pos), Color.LIME)
+
 
 func _apply_constaint() -> void:
-	const MAX_DIST := 50.0
-
 	var delta := flail.global_position - player.global_position
 	var delta_len := delta.length()
 
