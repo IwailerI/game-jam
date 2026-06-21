@@ -10,6 +10,7 @@ movement_enabled = true
 movement_stop_distance = 7.0
 melee_enabled = true
 melee_hurtbox = NodePath("HurtBox")
+melee_knockback = 300.0
 
 [node name="HurtBox" type="Area2D" parent="." index="3" unique_id=1594991989]
 collision_layer = 0

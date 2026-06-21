@@ -14,6 +14,7 @@ extends CharacterBody2D
 @export var melee_interval: float = 0.5
 @export var melee_distance: float = 7.0
 @export var melee_hurtbox: Area2D
+@export var melee_knockback: float = 100.0
 var _melee_cooldown: float = 0.0
 
 
@@ -65,6 +66,7 @@ func _physics_process(delta: float) -> void:
 		):
 			_melee_cooldown = melee_interval
 			cnb.health_component.damage(melee_damage)
+			cnb.player.apply_central_impulse(global_position.direction_to(cnb.player.global_position) * melee_knockback)
 
 		_melee_cooldown -= delta
 		_melee_cooldown = maxf(_melee_cooldown, 0.0)
