@@ -179,7 +179,6 @@ func _calc_knockback(velocity: float) -> float:
 	var extra := maxf(0, velocity - 300)
 	var rest := velocity - extra
 
-	prints(rest, extra)
 	return rest + extra ** 1.1
 
 func _hide_animation() -> void:
