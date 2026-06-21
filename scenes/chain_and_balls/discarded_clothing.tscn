@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://drjke71dwu3nw"]
+
+[ext_resource type="Texture2D" uid="uid://dejxo262c6ym5" path="res://assets/art/clothe_1.png" id="1_4oe47"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4oe47"]
+radius = 9.0
+
+[node name="DiscardedClothing" type="RigidBody2D" unique_id=720072907]
+collision_layer = 2
+collision_mask = 2
+linear_damp_mode = 1
+linear_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=457757977]
+texture = ExtResource("1_4oe47")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1714145548]
+shape = SubResource("CircleShape2D_4oe47")

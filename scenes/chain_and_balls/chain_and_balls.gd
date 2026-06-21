@@ -21,6 +21,7 @@ var _player_frozen_state: bool = false
 
 var _stamina: float = 1.0
 var _stamina_ran_out: bool = false
+var _prev_clothing_idx: int = 0
 
 @onready var flail: RigidBody2D = $Flail
 @onready var player: RigidBody2D = $Player
@@ -181,10 +182,24 @@ func _calc_knockback(velocity: float) -> float:
 
 	return rest + extra ** 1.1
 
+
 func _hide_animation() -> void:
 	print("viu")
 	player_animation.hide()
 
+
 func _udpate_nudity_state(amount: int) -> void:
-	player_sprite.frame_coords.x = clamp(int(3 - health_component.health /
-			(health_component.initial_health * (1.0/3.0))), 0, 2)
+	const CLOTHING_ELEM := preload("res://scenes/chain_and_balls/discarded_clothing.tscn")
+
+	var idx := clampi(remap(health_component.health, health_component.initial_health, 0, 0, 3), 0, 2)
+	player_sprite.frame_coords.x = idx
+
+	if idx != _prev_clothing_idx and _prev_clothing_idx in [0, 1]:
+		var inst := CLOTHING_ELEM.instantiate() as RigidBody2D
+		inst.global_position = player.global_position
+		inst.global_rotation = randf_range(0, TAU)
+		inst.linear_velocity = Vector2.UP * 100.0
+		(inst.get_node("Sprite2D") as Sprite2D).frame = _prev_clothing_idx
+		add_child(inst)
+
+	_prev_clothing_idx = idx
