@@ -43,6 +43,8 @@ static func get_instance() -> ChainAndBalls:
 func _ready() -> void:
 	health_component.died.connect(_on_died)
 	health_component.damaged.connect(_on_damaged)
+	health_component.damaged.connect(_udpate_nudity_state)
+	health_component.healed.connect(_udpate_nudity_state)
 	flail_hurt_box.body_entered.connect(_on_flail_enemy_entered)
 	flail_hurt_box.area_entered.connect(_on_flail_enemy_entered)
 
@@ -157,8 +159,8 @@ func _apply_constaint() -> void:
 
 
 func _on_damaged(amount: int) -> void:
-	player_sprite.frame_coords.x = int(3 - health_component.health / (health_component.initial_health * (1.0/3.0)))
 	print("player took ", amount, " damage")
+	print("current health: ", health_component.health)
 
 
 func _on_died() -> void:
@@ -182,3 +184,7 @@ func _calc_knockback(velocity: float) -> float:
 func _hide_animation() -> void:
 	print("viu")
 	player_animation.hide()
+
+func _udpate_nudity_state() -> void:
+	player_sprite.frame_coords.x = clamp(int(3 - health_component.health /
+			(health_component.initial_health * (1.0/3.0))), 0, 2)
