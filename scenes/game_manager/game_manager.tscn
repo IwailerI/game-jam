@@ -5,3 +5,4 @@
 [node name="GameManager" type="Node2D" unique_id=1386249361]
 y_sort_enabled = true
 script = ExtResource("1_0drbn")
+enemy_cap = 256
