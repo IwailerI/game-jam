@@ -2,5 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cagct1tdxfty" path="res://scenes/game_manager/game_manager.gd" id="1_0drbn"]
 
-[node name="GameManager" type="Node" unique_id=559716171]
+[node name="GameManager" type="Node2D" unique_id=1386249361]
+y_sort_enabled = true
 script = ExtResource("1_0drbn")
