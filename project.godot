@@ -73,9 +73,7 @@ folder_colors={
 [global_group]
 
 settings_audio=""
-player="The player"
-flailball="Ball of the flail, used to discover them in upgrade UI."
-chain_and_balls=""
+chain_and_balls="The chain and the balls"
 
 [gui]
 
