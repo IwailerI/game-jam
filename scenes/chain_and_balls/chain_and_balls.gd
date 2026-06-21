@@ -12,6 +12,7 @@ const PLAYER_STANDING_TEXTURE: Texture2D = preload("res://assets/art/mr_cool.png
 @export var damage: int = 50
 
 @export_group("Stamina", "stamina")
+@export var stamina_enabled: bool = false
 @export var stamina_consumption: float = 0.3
 @export var stamina_regeneration: float = 0.7
 
@@ -58,7 +59,7 @@ func _physics_process(delta: float) -> void:
 		player_sprite.flip_h = false
 
 	var inp_flail := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	flail.freeze = inp_flail or _stamina <= 0.0 or _stamina_ran_out
+	flail.freeze = inp_flail or (stamina_enabled and (_stamina <= 0.0 or _stamina_ran_out))
 	var flail_frozen_delta := int(flail.freeze) - int(_last_grounded_flail != null)
 	player.freeze = Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
 
@@ -72,14 +73,15 @@ func _physics_process(delta: float) -> void:
 		flail.linear_velocity = Vector2.ZERO
 		player.apply_central_force((get_global_mouse_position() - player.global_position).normalized() * force_p)
 
-	if not flail.freeze and (not stamina_on_flight or player.freeze):
-		_stamina -= stamina_consumption * delta
-	else:
-		_stamina += stamina_regeneration * delta
+	if stamina_enabled:
+		if not flail.freeze and (not stamina_on_flight or player.freeze):
+			_stamina -= stamina_consumption * delta
+		else:
+			_stamina += stamina_regeneration * delta
 
-	_stamina = clampf(_stamina, 0, 1)
-	if _stamina <= 0:
-		_stamina_ran_out = true
+		_stamina = clampf(_stamina, 0, 1)
+		if _stamina <= 0:
+			_stamina_ran_out = true
 
 
 	if player.freeze:
@@ -117,7 +119,9 @@ func _physics_process(delta: float) -> void:
 			flail.show()
 
 
-	(%StaminaLabel as Label).text = "%.2f" % _stamina
+	var stamina_label := %StaminaLabel as Label
+	stamina_label.visible = stamina_enabled
+	stamina_label.text = "%.2f" % _stamina
 
 
 func _apply_constaint() -> void:
