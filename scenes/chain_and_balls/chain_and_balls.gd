@@ -1,8 +1,13 @@
 class_name ChainAndBalls
 extends Node2D
 
+const _GROUNDED_FLAIL := preload("res://scenes/chain_and_balls/grounded_flail_ball.tscn")
+
 @export var force_p: float = 100.0
 @export var force_f: float = 100.0
+
+var _prev_flail_grounded: bool = false
+var _last_grounded_flail: Sprite2D
 
 @onready var flail: RigidBody2D = $Flail
 @onready var player: RigidBody2D = $Player
@@ -21,6 +26,8 @@ static func get_instance() -> ChainAndBalls:
 
 func _physics_process(_delta: float) -> void:
 	flail.freeze = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	var flail_frozen_delta := int(flail.freeze) - int(_prev_flail_grounded)
+	_prev_flail_grounded = flail.freeze
 	player.freeze = Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
 
 	if player.freeze and not flail.freeze:
@@ -36,6 +43,24 @@ func _physics_process(_delta: float) -> void:
 		chain.to_local(player.global_position),
 		chain.to_local(flail.global_position),
 	])
+
+	match flail_frozen_delta:
+		1: # just landed
+			if is_instance_valid(_last_grounded_flail):
+				_last_grounded_flail.queue_free()
+			_last_grounded_flail = _GROUNDED_FLAIL.instantiate()
+			_last_grounded_flail.global_position = flail.global_position
+			flail.hide()
+			add_child(_last_grounded_flail)
+		-1: # just released
+			if is_instance_valid(_last_grounded_flail):
+				_last_grounded_flail.frame = 0
+				var t := _last_grounded_flail.create_tween().chain()
+				t.tween_interval(2.0)
+				t.tween_property(_last_grounded_flail, "modulate:a", 0.0, 0.5)
+				t.tween_callback(_last_grounded_flail.queue_free)
+				_last_grounded_flail = null
+			flail.show()
 
 
 func _apply_constaint() -> void:

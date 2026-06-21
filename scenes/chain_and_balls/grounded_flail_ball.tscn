@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cjh8bvdq7wm2i"]
+
+[ext_resource type="Texture2D" uid="uid://cyujwv2r3r5rd" path="res://assets/art/crater.png" id="1_w4b7m"]
+
+[node name="GroundedFlailBall" type="Sprite2D" unique_id=229274948]
+z_index = -1
+texture = ExtResource("1_w4b7m")
+offset = Vector2(0.5, 5)
+hframes = 2
+frame = 1

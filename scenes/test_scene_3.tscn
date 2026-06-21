@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2str612gqg4n"]
 
-[ext_resource type="PackedScene" uid="uid://05li8lv1ril2" path="res://scenes/getting_over_it/chain_and_balls.tscn" id="1_wemst"]
+[ext_resource type="PackedScene" uid="uid://05li8lv1ril2" path="res://scenes/chain_and_balls/chain_and_balls.tscn" id="1_wemst"]
 [ext_resource type="PackedScene" uid="uid://bwust5e26nd8q" path="res://scenes/game_manager/game_manager.tscn" id="2_svppf"]
 [ext_resource type="Script" uid="uid://ddc45eylgdqsm" path="res://resources/wave.gd" id="3_y2dlf"]
 [ext_resource type="Script" uid="uid://b0n51pgglqvsh" path="res://resources/wave_enemy_entry.gd" id="4_xmfm2"]
