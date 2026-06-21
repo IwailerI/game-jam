@@ -4,8 +4,8 @@ extends Node2D
 const _GROUNDED_FLAIL := preload("res://scenes/chain_and_balls/grounded_flail_ball.tscn")
 const GroundedFlail := preload("res://scenes/chain_and_balls/grounded_flail_ball.gd")
 
-const PLAYER_FLYING_TEXTURE: Texture2D = preload("res://assets/art/fly_1.png")
-const PLAYER_STANDING_TEXTURE: Texture2D = preload("res://assets/art/mr_cool.png")
+const PLAYER_FLYING_TEXTURE: Texture2D = preload("res://assets/art/chell_flying.png")
+const PLAYER_STANDING_TEXTURE: Texture2D = preload("res://assets/art/chell_standing.png")
 
 @export var force_p: float = 100.0
 @export var force_f: float = 100.0

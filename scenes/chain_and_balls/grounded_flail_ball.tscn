@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cjh8bvdq7wm2i"]
 
 [ext_resource type="Script" uid="uid://dmul7txj5stcm" path="res://scenes/chain_and_balls/grounded_flail_ball.gd" id="1_57cax"]
-[ext_resource type="Texture2D" uid="uid://bkqdk0il4xp3h" path="res://assets/art/crater_l2.png" id="1_w4b7m"]
+[ext_resource type="Texture2D" uid="uid://djq8jt3ppf6wg" path="res://assets/art/crater_NEW.png" id="2_6a4ob"]
 [ext_resource type="Texture2D" uid="uid://cofpnxpywrnwa" path="res://assets/art/balls.png" id="3_57cax"]
 [ext_resource type="Texture2D" uid="uid://dle3mwdxlc0vw" path="res://assets/art/boom_sheet.png" id="4_6a4ob"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57cax"]
-atlas = ExtResource("1_w4b7m")
+atlas = ExtResource("2_6a4ob")
 region = Rect2(50, 0, 31, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6a4ob"]
@@ -14,7 +14,7 @@ atlas = ExtResource("3_57cax")
 region = Rect2(0, 0, 20, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7owpn"]
-atlas = ExtResource("1_w4b7m")
+atlas = ExtResource("2_6a4ob")
 region = Rect2(0, 5, 43, 23)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1igsb"]
