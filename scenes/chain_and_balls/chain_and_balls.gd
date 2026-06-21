@@ -163,10 +163,13 @@ func _apply_constaint() -> void:
 func _on_damaged(amount: int) -> void:
 	print("player took ", amount, " damage")
 	print("current health: ", health_component.health)
+	var t := player_sprite.create_tween().chain()
+	t.tween_property(player_sprite, "self_modulate", Color.WHITE, 0.125).from(Color.RED)
 
 
 func _on_died() -> void:
 	print("game over")
+
 
 func _on_flail_enemy_entered(enemy: Node2D) -> void:
 	if flail.freeze:

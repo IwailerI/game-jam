@@ -63,11 +63,20 @@ autoplay = &"idle"
 [node name="HealthComponent" parent="." unique_id=1186933908 instance=ExtResource("2_40wdo")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1675653022]
+clip_children = 2
 position = Vector2(0, 15)
 texture = SubResource("AtlasTexture_tjssy")
 offset = Vector2(-5, -15)
 
+[node name="ColorRect" type="ColorRect" parent="Sprite2D" unique_id=1782675130]
+offset_left = -182.015
+offset_top = -149.0
+offset_right = 197.00002
+offset_bottom = 109.0
+color = Color(1, 1, 1, 0)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1280122558]
+visible = false
 shape = SubResource("CapsuleShape2D_40wdo")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=818558219]

@@ -36,12 +36,14 @@ var _knockback_velocity: Vector2 #leftover velocity after
 @onready var cnb := ChainAndBalls.get_instance()
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var highlight_rect: ColorRect = $Sprite2D/ColorRect
 
 var _initial_sprite_offset: Vector2
 var _initial_marker_offset: Vector2
 
 
 func _ready() -> void:
+	health_component.damaged.connect(_on_damaged)
 	health_component.died.connect(queue_free)
 	_initial_sprite_offset = sprite.offset
 	if is_instance_valid(shooting_marker):
@@ -109,3 +111,8 @@ func _physics_process(delta: float) -> void:
 ## Public function, API expected by chain & balls
 func apply_knockback(v: Vector2) -> void:
 	_knockback_velocity += v
+
+
+func _on_damaged(_amount: float) -> void:
+	var t := highlight_rect.create_tween().chain()
+	t.tween_property(highlight_rect, "color:a", 0, 0.125).from(0.75)
