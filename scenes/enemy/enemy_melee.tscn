@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://v7lqtvnaboqq"]
 
 [ext_resource type="PackedScene" uid="uid://gbsgy7a03y4m" path="res://scenes/enemy/enemy.tscn" id="1_8divv"]
+[ext_resource type="Texture2D" uid="uid://cl148x8e0tt8p" path="res://assets/art/all_enemies.png" id="2_pwbyy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3hq4"]
+atlas = ExtResource("2_pwbyy")
+region = Rect2(0, 12, 26, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8divv"]
 radius = 13.0
@@ -11,6 +16,9 @@ movement_stop_distance = 7.0
 melee_enabled = true
 melee_hurtbox = NodePath("HurtBox")
 melee_knockback = 300.0
+
+[node name="Sprite2D" parent="." index="2" unique_id=1675653022]
+texture = SubResource("AtlasTexture_k3hq4")
 
 [node name="HurtBox" type="Area2D" parent="." index="3" unique_id=1594991989]
 collision_layer = 0

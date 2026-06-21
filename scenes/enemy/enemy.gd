@@ -35,10 +35,17 @@ var _knockback_velocity: Vector2 #leftover velocity after
 
 @onready var cnb := ChainAndBalls.get_instance()
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var sprite: Sprite2D = $Sprite2D
+
+var _initial_sprite_offset: Vector2
+var _initial_marker_offset: Vector2
 
 
 func _ready() -> void:
 	health_component.died.connect(queue_free)
+	_initial_sprite_offset = sprite.offset
+	if is_instance_valid(shooting_marker):
+		_initial_marker_offset = shooting_marker.position
 
 
 func _physics_process(delta: float) -> void:
@@ -57,6 +64,18 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	sprite.flip_h = cnb.player.global_position.x < global_position.x
+	if sprite.flip_h:
+		sprite.offset = _initial_sprite_offset * Vector2(-1, 1)
+	else:
+		sprite.offset = _initial_sprite_offset
+
+	if is_instance_valid(shooting_marker):
+		if sprite.flip_h:
+			shooting_marker.position = _initial_marker_offset * Vector2(-1, 1)
+		else:
+			shooting_marker.position = _initial_marker_offset
+
 	if melee_enabled:
 		if (
 			dist2 < melee_distance*melee_distance
@@ -70,7 +89,6 @@ func _physics_process(delta: float) -> void:
 
 		_melee_cooldown -= delta
 		_melee_cooldown = maxf(_melee_cooldown, 0.0)
-
 
 	if shooting_enabled:
 		if dist2 < shooting_distance*shooting_distance and _shooting_cooldown <= 0 and _knockback_velocity.is_zero_approx():
