@@ -110,7 +110,7 @@ texture = ExtResource("5_m8ad4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player/Sprite2D" unique_id=1546953943]
 z_index = -1
-position = Vector2(0, 11)
+position = Vector2(0, 16)
 sprite_frames = SubResource("SpriteFrames_djf8j")
 frame = 5
 frame_progress = 1.0
