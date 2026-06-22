@@ -123,11 +123,10 @@ hframes = 3
 vframes = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player/Sprite2D" unique_id=1546953943]
+modulate = Color(1, 0.92941177, 0.7019608, 0.6509804)
 z_index = -1
 position = Vector2(0, 16)
 sprite_frames = SubResource("SpriteFrames_djf8j")
-frame = 5
-frame_progress = 1.0
 
 [node name="Shadow" type="Sprite2D" parent="Player/Sprite2D" unique_id=1410988615]
 modulate = Color(0.105882354, 0.105882354, 0.105882354, 0.46666667)

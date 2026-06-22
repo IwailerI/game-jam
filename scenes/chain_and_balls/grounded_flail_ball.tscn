@@ -85,6 +85,7 @@ texture = SubResource("AtlasTexture_7owpn")
 centered = false
 
 [node name="Animation" type="AnimatedSprite2D" parent="." unique_id=353232728]
+modulate = Color(0.84313726, 0.72156864, 0.6392157, 1)
 z_index = 4
 z_as_relative = false
 position = Vector2(1, 1)
