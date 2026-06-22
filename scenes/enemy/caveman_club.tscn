@@ -7,12 +7,12 @@
 atlas = ExtResource("2_pwbyy")
 region = Rect2(0, 12, 26, 32)
 
-[node name="EnemyMelee" unique_id=1871860269 instance=ExtResource("1_8divv")]
+[node name="CavemanClub" unique_id=1871860269 instance=ExtResource("1_8divv")]
 movement_enabled = true
 movement_stop_distance = 7.0
 melee_enabled = true
 melee_distance = 13.0
 melee_knockback = 300.0
 
-[node name="Sprite2D" parent="." index="2" unique_id=1675653022]
+[node name="Sprite2D" parent="." index="3" unique_id=1675653022]
 texture = SubResource("AtlasTexture_k3hq4")

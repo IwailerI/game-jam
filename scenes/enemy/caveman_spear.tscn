@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://1meomxvyd37m"]
+
+[ext_resource type="PackedScene" uid="uid://gbsgy7a03y4m" path="res://scenes/enemy/enemy.tscn" id="1_4k34s"]
+[ext_resource type="Texture2D" uid="uid://cl148x8e0tt8p" path="res://assets/art/all_enemies.png" id="2_6g5yn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3hq4"]
+atlas = ExtResource("2_6g5yn")
+region = Rect2(28, 13, 41, 31)
+
+[node name="CavemanSpear" unique_id=1871860269 instance=ExtResource("1_4k34s")]
+movement_enabled = true
+movement_speed = 43.108
+movement_stop_distance = 15.0
+melee_enabled = true
+melee_distance = 20.0
+melee_knockback = 400.0
+knockback_fading = 255.379
+
+[node name="Sprite2D" parent="." index="3" unique_id=1675653022]
+texture = SubResource("AtlasTexture_k3hq4")
+offset = Vector2(0, -15)
