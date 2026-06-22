@@ -202,7 +202,7 @@ func apply_knockback(v: Vector2) -> void:
 
 
 func apply_armour(r: RigidBody2D, _knockback: Vector2) -> void:
-	if not armour_enabled:
+	if not armour_enabled or _was_lobotomized:
 		return
 
 	print("armour!")

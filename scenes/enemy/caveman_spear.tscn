@@ -13,9 +13,10 @@ movement_speed = 43.108
 movement_stop_distance = 15.0
 melee_enabled = true
 melee_distance = 20.0
-melee_knockback = 400.0
+melee_knockback = 422.747
 knockback_fading = 255.379
+knockback_multiplier = 1.176
 
-[node name="Sprite2D" parent="." index="3" unique_id=1675653022]
+[node name="Sprite2D" parent="." index="4" unique_id=1675653022]
 texture = SubResource("AtlasTexture_k3hq4")
 offset = Vector2(0, -15)

@@ -58,16 +58,16 @@ height = 34.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjssy"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_13gj6"]
-streams_count = 2
-stream_0/stream = ExtResource("6_cwlon")
-stream_1/stream = ExtResource("7_nbhyu")
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dtxhd"]
 streams_count = 3
 stream_0/stream = ExtResource("8_hvxgb")
 stream_1/stream = ExtResource("9_peoo5")
 stream_2/stream = ExtResource("10_2f3il")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_13gj6"]
+streams_count = 2
+stream_0/stream = ExtResource("6_cwlon")
+stream_1/stream = ExtResource("7_nbhyu")
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1871860269 groups=["enemy"]]
 collision_layer = 2
@@ -97,10 +97,10 @@ texture = SubResource("AtlasTexture_tjssy")
 offset = Vector2(-5, -15)
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D" unique_id=1782675130]
-offset_left = -187.0
-offset_top = -149.0
-offset_right = 192.01501
-offset_bottom = 109.0
+offset_left = -18.0
+offset_top = -41.0
+offset_right = 18.0
+offset_bottom = 5.0
 color = Color(1, 1, 1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1280122558]

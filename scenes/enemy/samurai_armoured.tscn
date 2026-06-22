@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b0o8j4byt0v64"]
+
+[ext_resource type="PackedScene" uid="uid://gbsgy7a03y4m" path="res://scenes/enemy/enemy.tscn" id="1_hujly"]
+[ext_resource type="Texture2D" uid="uid://cl148x8e0tt8p" path="res://assets/art/all_enemies.png" id="2_ahfwy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb634"]
+atlas = ExtResource("2_ahfwy")
+region = Rect2(91, 13, 32, 31)
+
+[node name="SamuraiArmoured" unique_id=1871860269 instance=ExtResource("1_hujly")]
+movement_enabled = true
+movement_speed = 20.0
+movement_stop_distance = 15.0
+melee_enabled = true
+melee_damage = 40
+melee_distance = 13.0
+knockback_multiplier = 0.5
+armour_enabled = true
+armour_efficiency = 1.1
+
+[node name="Sprite2D" parent="." index="4" unique_id=1675653022]
+texture = SubResource("AtlasTexture_yb634")
+offset = Vector2(7, -15)
+
+[node name="ColorRect" parent="Sprite2D" index="0" unique_id=1782675130]
+offset_left = -28.0
+offset_right = 28.0

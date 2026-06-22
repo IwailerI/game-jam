@@ -15,8 +15,8 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	life_timer.timeout.connect(queue_free)
 
-	direction = (cnb.player.global_position - global_position).normalized()
-	rotation = direction.angle()
+	direction = global_position.direction_to(cnb.player.global_position)
+	look_at(cnb.player.global_position)
 
 
 func _process(delta: float) -> void:
