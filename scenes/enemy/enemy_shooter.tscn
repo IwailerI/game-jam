@@ -10,6 +10,9 @@ region = Rect2(151, 11, 35, 33)
 
 [node name="EnemyShooter" unique_id=1871860269 node_paths=PackedStringArray("shooting_marker") instance=ExtResource("1_thi24")]
 movement_enabled = true
+melee_enabled = true
+melee_damage = 5
+melee_distance = 13.0
 shooting_enabled = true
 shooting_scene = ExtResource("2_r31ym")
 shooting_marker = NodePath("ShootingPoint")

@@ -13,7 +13,6 @@ extends CharacterBody2D
 @export var melee_damage: int = 10
 @export var melee_interval: float = 0.5
 @export var melee_distance: float = 7.0
-@export var melee_hurtbox: Area2D
 @export var melee_knockback: float = 100.0
 var _melee_cooldown: float = 0.0
 
@@ -86,7 +85,6 @@ func _physics_process(delta: float) -> void:
 			dist2 < melee_distance*melee_distance
 			and _melee_cooldown <= 0
 			and _knockback_velocity.is_zero_approx()
-			and (melee_hurtbox.has_overlapping_areas() or melee_hurtbox.has_overlapping_bodies())
 		):
 			_melee_cooldown = melee_interval
 			cnb.health_component.damage(melee_damage)

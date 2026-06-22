@@ -7,23 +7,12 @@
 atlas = ExtResource("2_pwbyy")
 region = Rect2(0, 12, 26, 32)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8divv"]
-radius = 13.0
-
-[node name="EnemyMelee" unique_id=1871860269 node_paths=PackedStringArray("melee_hurtbox") instance=ExtResource("1_8divv")]
+[node name="EnemyMelee" unique_id=1871860269 instance=ExtResource("1_8divv")]
 movement_enabled = true
 movement_stop_distance = 7.0
 melee_enabled = true
 melee_distance = 13.0
-melee_hurtbox = NodePath("HurtBox")
 melee_knockback = 300.0
 
 [node name="Sprite2D" parent="." index="2" unique_id=1675653022]
 texture = SubResource("AtlasTexture_k3hq4")
-
-[node name="HurtBox" type="Area2D" parent="." index="3" unique_id=1594991989]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0" unique_id=486032791]
-shape = SubResource("CircleShape2D_8divv")
-debug_color = Color(0.9049976, 0.2585169, 0.42444482, 0.41960785)
