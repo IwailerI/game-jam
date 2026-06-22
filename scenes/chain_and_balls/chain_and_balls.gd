@@ -212,4 +212,4 @@ func _is_over_hole(pos: Vector2) -> bool:
 
 func _fall_into_a_hole() -> void:
 	health_component.damage.call_deferred(999999999)
-	hide()
+	modulate.a = 0.5
