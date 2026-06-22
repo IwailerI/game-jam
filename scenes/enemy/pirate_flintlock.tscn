@@ -8,7 +8,7 @@
 atlas = ExtResource("3_3glft")
 region = Rect2(151, 11, 35, 33)
 
-[node name="EnemyShooter" unique_id=1871860269 node_paths=PackedStringArray("shooting_marker") instance=ExtResource("1_thi24")]
+[node name="PirateFlintlock" unique_id=1871860269 node_paths=PackedStringArray("shooting_marker") instance=ExtResource("1_thi24")]
 movement_enabled = true
 melee_enabled = true
 melee_damage = 5
@@ -17,7 +17,7 @@ shooting_enabled = true
 shooting_scene = ExtResource("2_r31ym")
 shooting_marker = NodePath("ShootingPoint")
 
-[node name="Sprite2D" parent="." index="2" unique_id=1675653022]
+[node name="Sprite2D" parent="." index="3" unique_id=1675653022]
 texture = SubResource("AtlasTexture_hs2gs")
 offset = Vector2(10, -15)
 

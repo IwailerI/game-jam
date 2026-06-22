@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bjjj5yrb1tvg6"]
+
+[ext_resource type="PackedScene" uid="uid://flppggcvx0w1" path="res://scenes/level_template/level_template.tscn" id="1_3n7h2"]
+[ext_resource type="TileSet" uid="uid://3e0v8vs6i28k" path="res://resources/tilesets/floor.tres" id="2_msin7"]
+
+[node name="LevelTemplate" unique_id=669825193 instance=ExtResource("1_3n7h2")]
+
+[node name="TileMapLayer" parent="BG" parent_id_path=PackedInt32Array(1146862344) index="0" unique_id=785946752]
+tile_set = ExtResource("2_msin7")
