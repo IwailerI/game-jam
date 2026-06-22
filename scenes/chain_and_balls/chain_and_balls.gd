@@ -1,6 +1,10 @@
 class_name ChainAndBalls
 extends Node2D
 
+
+signal got_lobotomized
+
+
 const _GROUNDED_FLAIL := preload("res://scenes/chain_and_balls/grounded_flail_ball.tscn")
 const GroundedFlail := preload("res://scenes/chain_and_balls/grounded_flail_ball.gd")
 
@@ -20,6 +24,8 @@ var _player_frozen_state: bool = false
 
 var _prev_clothing_idx: int = 0
 
+var _was_lobotomized: bool = false
+
 @onready var flail: RigidBody2D = $Flail
 @onready var player: RigidBody2D = $Player
 @onready var chain: Line2D = $Chain
@@ -29,6 +35,7 @@ var _prev_clothing_idx: int = 0
 @onready var player_sprite: Sprite2D = $Player/Sprite2D
 @onready var player_animation: AnimatedSprite2D = $Player/Sprite2D/AnimatedSprite2D
 
+@onready var sfx_player: SfxPlayer = $Player/SfxPlayer
 
 static func get_instance() -> ChainAndBalls:
 	var cnb: ChainAndBalls = (Engine.get_main_loop() as SceneTree).get_first_node_in_group(&"chain_and_balls")
@@ -75,6 +82,7 @@ func _physics_process(_delta: float) -> void:
 		if not _player_frozen_state:
 			_player_frozen_state = true
 			player_animation.play()
+			sfx_player.play_sound("land")
 	else:
 		player_sprite.frame_coords.y = 0
 		_player_frozen_state = false
@@ -94,6 +102,7 @@ func _physics_process(_delta: float) -> void:
 			_last_grounded_flail.global_position = flail.global_position
 			flail.hide()
 			add_child(_last_grounded_flail)
+			sfx_player.play_sound("land")
 		-1: # just released
 			if is_instance_valid(_last_grounded_flail):
 				_last_grounded_flail.make_hollow()
@@ -147,15 +156,34 @@ func _apply_constaint() -> void:
 	flail.apply_impulse(impulse * (1 - p_bias))
 
 
+func _labotomize() -> void:
+	if _was_lobotomized:
+		return
+
+	got_lobotomized.emit()
+
+	_was_lobotomized = true
+	sfx_player.prepare_to_die()
+
+	print("game over")
+
+
 func _on_damaged(amount: int) -> void:
+	if _was_lobotomized:
+		return
+
 	print("player took ", amount, " damage")
 	print("current health: ", health_component.health)
 	var t := player_sprite.create_tween().chain()
 	t.tween_property(player_sprite, "self_modulate", Color.WHITE, 0.125).from(Color.RED)
+	sfx_player.play_sound("damaged")
+	sfx_player.play_sound("damaged_scream")
 
 
 func _on_died() -> void:
-	print("game over")
+	if _was_lobotomized:
+		return
+	_labotomize()
 
 
 func _on_flail_enemy_entered(enemy: Node2D) -> void:
@@ -211,5 +239,11 @@ func _is_over_hole(pos: Vector2) -> bool:
 
 
 func _fall_into_a_hole() -> void:
+	if _was_lobotomized:
+		return
+
+	sfx_player.play_sound("fall_into_a_hole")
+	_labotomize()
+
 	health_component.damage.call_deferred(999999999)
 	modulate.a = 0.5

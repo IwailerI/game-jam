@@ -6,7 +6,7 @@ extends Node2D
 
 var players: Dictionary[String, AudioStreamPlayer2D]
 var time_left_to_finish_all: float = 0
-
+var prepared_to_die: bool = false
 
 func _ready() -> void:
 	var player_tmpl := $AudioStreamPlayer2D
@@ -41,6 +41,11 @@ func play_sound(key: String) -> AudioStream:
 
 
 func prepare_to_die() -> void:
+	if prepared_to_die:
+		return
+
+	prepared_to_die = true
+
 	var grandparent := get_parent().get_parent()
 	get_parent().remove_child(self)
 	grandparent.add_child(self)
