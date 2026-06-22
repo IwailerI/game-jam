@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cfhttw32qu25g" path="res://scenes/enemy/enemy_shooter.tscn" id="6_y2dlf"]
 [ext_resource type="Texture2D" uid="uid://bcsv335crybqa" path="res://assets/art/tile_2.png" id="7_y2dlf"]
 [ext_resource type="PackedScene" uid="uid://doh5v2chquosb" path="res://scenes/audio/gameplay_audio_player/gameplay_audio_player.tscn" id="8_45k7r"]
-[ext_resource type="AudioStream" uid="uid://cjp4lnpkqhuym" path="res://assets/audio/music/main_preloop.wav" id="9_f4bkh"]
+[ext_resource type="AudioStream" uid="uid://dspyaensqoboj" path="res://assets/audio/music/main_preloop_w_pause.wav" id="9_vk42m"]
 [ext_resource type="AudioStream" uid="uid://dsayevgimoglo" path="res://assets/audio/music/main_loop.wav" id="10_vk42m"]
 [ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="11_f4bkh"]
 [ext_resource type="Texture2D" uid="uid://cge51wr7m3del" path="res://assets/art/hole_tilemap.png" id="12_vk42m"]
@@ -185,7 +185,7 @@ tile_set = SubResource("TileSet_xmfm2")
 
 [node name="GameplayAudioPlayer" parent="." unique_id=614540304 instance=ExtResource("8_45k7r")]
 process_mode = 3
-stream = ExtResource("9_f4bkh")
+stream = ExtResource("9_vk42m")
 autoplay = true
 bus = &"Music"
 loop_stream = ExtResource("10_vk42m")
