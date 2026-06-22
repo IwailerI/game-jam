@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="4_eng0m"]
 [ext_resource type="Texture2D" uid="uid://bcsv335crybqa" path="res://assets/art/tile_2.png" id="5_q12ii"]
 [ext_resource type="PackedScene" uid="uid://05li8lv1ril2" path="res://scenes/chain_and_balls/chain_and_balls.tscn" id="6_aj1na"]
+[ext_resource type="TileSet" uid="uid://bgik4swsfbsx6" path="res://resources/tilesets/outer_walls.tres" id="7_bw430"]
 [ext_resource type="TileSet" uid="uid://c3k8j3ka7re5h" path="res://resources/tilesets/tileset.tres" id="7_y3ot6"]
 [ext_resource type="PackedScene" uid="uid://c2iawpi0rhu1r" path="res://scenes/exit/exit.tscn" id="8_hghgy"]
 
@@ -23,9 +24,9 @@ tile_size = Vector2i(48, 48)
 sources/0 = SubResource("TileSetAtlasSource_cgfde")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x3f8h"]
-vertices = PackedVector2Array(760.28125, -236, 199.5, -236, 916.3672, -292.3125, -124.546875, -210.53906, 95.546875, -227.82813, 84, -216.28125, 780, -216.28125, 899.5703, 291.89844, 780, 216.28125, 84, -92, -72.28125, -92, -72.28125, 124, 68, 124, 68, 216.28125, -112.47656, 287.09375, 760.28125, 236, 87.71875, 236, -92, -72.28125, -92, 104.28125, 660, -164, 660, 180, 156, 180, 156, 55.71875, 136.28125, 36, -20, 36, -20, -36, 136.28125, -36, 156, -55.71875, 156, -164)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5), PackedInt32Array(6, 0, 2), PackedInt32Array(6, 2, 7, 8), PackedInt32Array(3, 5, 9, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(15, 8, 7), PackedInt32Array(15, 7, 14, 16), PackedInt32Array(13, 16, 14), PackedInt32Array(3, 10, 17), PackedInt32Array(14, 3, 17, 18), PackedInt32Array(11, 14, 18), PackedInt32Array(19, 20, 21, 22), PackedInt32Array(23, 24, 25, 26), PackedInt32Array(27, 28, 19), PackedInt32Array(27, 19, 22, 23, 26)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-145, -229, -132, 307, 919, 312, 937, -314)])
+vertices = PackedVector2Array(192, 116, -308, 116, -308, -116, 192, -116, 1508, 116, 304, 116, 304, -116, 1508, -116)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-431, -244, -404, 219, 1716, 204, 1710, -204)])
 source_geometry_mode = 2
 agent_radius = 20.0
 
@@ -43,13 +44,17 @@ loop_stream = ExtResource("3_frmvx")
 visible = false
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=785946752]
-z_index = -1
+z_index = -100
 texture_repeat = 1
 tile_set = SubResource("TileSet_ceqky")
 
 [node name="Tiles" type="TileMapLayer" parent="." unique_id=1105116259 groups=["navigation_polygon_source_geometry_group"]]
 y_sort_enabled = true
 tile_set = ExtResource("7_y3ot6")
+
+[node name="OuterWalls" type="TileMapLayer" parent="." unique_id=1196623470 groups=["navigation_polygon_source_geometry_group"]]
+y_sort_enabled = true
+tile_set = ExtResource("7_bw430")
 
 [node name="ChainAndBalls" parent="." unique_id=429461000 instance=ExtResource("6_aj1na")]
 
