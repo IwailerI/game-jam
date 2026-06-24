@@ -51,7 +51,7 @@ func _fill_level_select() -> void:
 	for i: int in GameManager.last_level():
 		var inst := Button.new()
 		inst.text = str(i+1)
-		inst.disabled = (i+1 > last_unlocked) and i != 0
+		inst.disabled = (i > last_unlocked) and i != 0
 
 		inst.pressed.connect(GameManager.load_level.bind(i+1))
 
