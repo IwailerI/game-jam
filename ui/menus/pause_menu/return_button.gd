@@ -2,4 +2,4 @@ extends BetterButton
 
 
 func _on_press() -> void:
-	($ReturnDialog as Node2D).show()
+	Transition.change_scene_path('res://ui/menus/main_menu/main_menu.tscn')
