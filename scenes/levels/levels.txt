@@ -2,3 +2,5 @@ res://scenes/levels/level01.tscn
 res://scenes/levels/level02.tscn
 res://scenes/levels/level03.tscn
 res://scenes/levels/level04.tscn
+res://scenes/levels/level05.tscn
+res://scenes/levels/level06.tscn
