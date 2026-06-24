@@ -47,8 +47,12 @@ func prepare_to_die() -> void:
 	prepared_to_die = true
 
 	var grandparent := get_parent().get_parent()
+	var initial_global_position := global_position
+
 	get_parent().remove_child(self)
 	grandparent.add_child(self)
+
+	global_position = initial_global_position
 
 	var t := create_tween()
 	t.tween_interval(time_left_to_finish_all)
