@@ -78,4 +78,5 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_v57cs")
 autoplay = "default"
 script = ExtResource("2_gpi2q")
+damage = 20
 mask = 9

@@ -1,9 +1,10 @@
+class_name Dinosaurik
 extends CharacterBody2D
-
 
 
 # signal expected by Exit
 signal got_lobotomized
+signal boss_started
 
 enum State {
 	STARTING,
@@ -55,16 +56,28 @@ var _charge_phase: ChargePhase
 var _meteors_left: int = 0
 var _meteor_cooldown: float = 0
 
+var _was_on_screen: bool = false
+
 @onready var cnb := ChainAndBalls.get_instance()
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var flip_group: Node2D = $FlipGroup
 @onready var hurtbox: Area2D = $HurtBox
+@onready var damage_flash: ColorRect = %DamageFlash
 
 
 func _ready() -> void:
 	hurtbox.body_entered.connect(_hurtbox_body_entered)
+	health_component.damaged.connect(_on_damaged)
+
+	($VisibleOnScreenNotifier2D as VisibleOnScreenNotifier2D).screen_entered.connect(func () -> void:
+		if not _was_on_screen:
+			_was_on_screen = true
+			boss_started.emit()
+	)
+
+	health_component.died.connect(got_lobotomized.emit)
 
 
 func _fill_states() -> void:
@@ -90,6 +103,13 @@ func _state_finished() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if not _was_on_screen:
+		return
+
+	if health_component.is_dead():
+		# TODO: animation
+		return
+
 	_fill_states()
 
 	_state_just_changed = _prev_state != _states.back()
@@ -265,9 +285,10 @@ func _hurtbox_body_entered(node: Node2D) -> void:
 
 
 
-func apply_knockback(knockback: Vector2) -> void:
-	print("knockback!")
+func _on_damaged(_amount: int) -> void:
+	damage_flash.create_tween().chain().tween_property(damage_flash, "color:a", 0, 0.3).from(0.75)
+	# TODO: SOUND!
 
 
-func apply_armour(flail: RigidBody2D, knockback: Vector2) -> void:
-	print("armour!")
+func apply_armour(flail: RigidBody2D, _knockback: Vector2) -> void:
+	flail.apply_central_impulse(-2 * flail.linear_velocity)

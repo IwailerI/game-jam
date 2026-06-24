@@ -126,8 +126,12 @@ collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_12rbl")
 walk_speed = 3000.0
-charge_speed = 700.0
+charge_speed = 600.0
 run_to_center_speed = 400.0
+
+[node name="VisibleOnScreenNotifier2D2" type="VisibleOnScreenNotifier2D" parent="." unique_id=200953374]
+position = Vector2(0, -30)
+rect = Rect2(-92, -45, 182, 81)
 
 [node name="SfxPlayer" parent="." unique_id=829347479 instance=ExtResource("2_ih6si")]
 audio_streams = Dictionary[String, AudioStream]({
@@ -156,12 +160,13 @@ texture = ExtResource("2_0vqgy")
 offset = Vector2(0, -34)
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="FlipGroup/Sprite2D" unique_id=1782675130]
+[node name="DamageFlash" type="ColorRect" parent="FlipGroup/Sprite2D" unique_id=1782675130]
+unique_name_in_owner = true
 offset_left = -116.0
 offset_top = -83.0
 offset_right = 110.0
 offset_bottom = 15.0
-color = Color(1, 1, 1, 0)
+color = Color(0.99215686, 0.5058824, 0.5882353, 0)
 metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=818558219]
