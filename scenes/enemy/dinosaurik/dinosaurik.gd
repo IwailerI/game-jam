@@ -78,7 +78,7 @@ func _do_walk() -> void:
 	if _state_just_changed:
 		_walk_time += randf_range(walk_min_time, walk_max_time)
 
-	animation_player.play(&"walk")
+	animation_player.play(&"walk", 0.5)
 
 	var dir := global_position.direction_to(cnb.player.global_position)
 
@@ -104,7 +104,7 @@ var _charge_phase: ChargePhase
 func _do_charge() -> void:
 	if _state_just_changed:
 		_charge_phase = ChargePhase.TELEGRAPH
-		animation_player.play(&"start_charge")
+		_force_play(&"start_charge")
 		animation_player.animation_finished.connect(func (_anim: Variant) -> void: _start_charge())
 
 
@@ -114,14 +114,17 @@ func _do_charge() -> void:
 		ChargePhase.CHARGE:
 			var delta := get_physics_process_delta_time()
 			velocity = velocity.move_toward(Vector2.ZERO, charge_decel * delta)
+
 			move_and_slide()
+
 			_look_in(velocity.x)
 
-			if velocity.is_zero_approx():
-				_charge_phase = ChargePhase.RECOVERY
-				animation_player.play("charge_recovery")
+			var real_vel := get_position_delta() / delta
 
-				animation_player.animation_finished.connect(func (_anim: Variant) -> void: _state_finished())
+			if real_vel.length_squared() < 1:
+				_charge_phase = ChargePhase.RECOVERY
+				_force_play(&"charge_recovery")
+				animation_player.animation_finished.connect(func (_anim: Variant) -> void: _state_finished(), CONNECT_ONE_SHOT)
 		ChargePhase.RECOVERY:
 			pass # do nothing
 
@@ -131,7 +134,7 @@ func _start_charge() -> void:
 	var dir := global_position.direction_to(cnb.player.global_position)
 	velocity = dir * charge_speed
 
-	animation_player.play(&"charge")
+	_force_play(&"charge")
 
 
 func _do_meteor_shower() -> void: _state_finished()
@@ -146,3 +149,9 @@ func _look_in(dir: float) -> void:
 	if is_zero_approx(dir):
 		return
 	flip_group.scale.x = signf(dir)
+
+
+func _force_play(anim: StringName) -> void:
+	if animation_player.current_animation == anim:
+		animation_player.stop()
+	animation_player.play(anim, 0.5)

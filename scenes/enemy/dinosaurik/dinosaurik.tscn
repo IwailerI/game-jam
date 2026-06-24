@@ -57,6 +57,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_gqlbm"]
 resource_name = "charge_recovery"
+length = 2.0
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -124,6 +125,7 @@ collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_12rbl")
 walk_speed = 3000.0
+charge_speed = 700.0
 
 [node name="SfxPlayer" parent="." unique_id=829347479 instance=ExtResource("2_ih6si")]
 audio_streams = Dictionary[String, AudioStream]({
@@ -141,7 +143,7 @@ show_rect = false
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1884903029]
 libraries/ = SubResource("AnimationLibrary_tjssy")
 autoplay = &"walk"
-blend_times = [&"walk", &"walk", 1.0]
+blend_times = [&"charge", &"charge", 0.5, &"charge", &"charge_recovery", 0.5, &"charge", &"start_charge", 0.5, &"charge", &"walk", 0.5, &"charge_recovery", &"charge", 0.5, &"charge_recovery", &"charge_recovery", 0.5, &"charge_recovery", &"start_charge", 0.5, &"charge_recovery", &"walk", 0.5, &"start_charge", &"charge", 0.5, &"start_charge", &"charge_recovery", 0.5, &"start_charge", &"start_charge", 0.5, &"start_charge", &"walk", 0.5, &"walk", &"charge", 0.5, &"walk", &"charge_recovery", 0.5, &"walk", &"start_charge", 0.5, &"walk", &"walk", 0.5]
 
 [node name="FlipGroup" type="Node2D" parent="." unique_id=1877461978]
 
