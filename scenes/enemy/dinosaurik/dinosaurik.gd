@@ -36,6 +36,7 @@ enum ChargePhase {
 @export var center: Node2D
 @export var meteor_manager: MeteorManager
 @export var meteor_rect: Control
+@export var meteors_grace_period: float = 2.5
 
 @export var shower_meteor_interval: float = 0.1
 @export var shower_meteors_min: int = 40
@@ -211,15 +212,15 @@ func _do_meteors(interval: float, get_spawn_pos: Callable) -> void:
 	var delta := get_physics_process_delta_time()
 	_meteor_cooldown -= delta
 
-	if _meteor_cooldown <= 0:
+	if _meteor_cooldown <= 0 and _meteors_left > 0:
 		var pos: Vector2 = get_spawn_pos.call()
 		meteor_manager.do_meteor(pos)
 
 		_meteor_cooldown = interval
 		_meteors_left -= 1
 
-	if _meteors_left <= 0:
-		_state_finished()
+		if _meteors_left == 0:
+			get_tree().create_timer(meteors_grace_period).timeout.connect(_state_finished)
 
 
 func _is_in_center() -> bool:
