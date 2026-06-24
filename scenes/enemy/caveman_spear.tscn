@@ -10,7 +10,7 @@ region = Rect2(28, 13, 41, 31)
 [node name="CavemanSpear" unique_id=1871860269 instance=ExtResource("1_4k34s")]
 movement_enabled = true
 movement_speed = 43.108
-movement_stop_distance = 15.0
+movement_stop_distance = 7.0
 melee_enabled = true
 melee_distance = 20.0
 melee_knockback = 422.747
