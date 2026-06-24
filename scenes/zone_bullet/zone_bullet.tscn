@@ -10,11 +10,9 @@
 collision_layer = 0
 script = ExtResource("1_rhri3")
 damage_zone_scene = ExtResource("2_3hg4f")
-rotation_speed = 1.0
 metadata/_edit_group_ = true
 
 [node name="LifeTimer" type="Timer" parent="." unique_id=1631210331]
-wait_time = 3.0
 one_shot = true
 autostart = true
 

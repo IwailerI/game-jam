@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://xe8ao63ds45"]
+
+[ext_resource type="PackedScene" uid="uid://gbsgy7a03y4m" path="res://scenes/enemy/enemy.tscn" id="1_p7v5c"]
+[ext_resource type="Texture2D" uid="uid://cl148x8e0tt8p" path="res://assets/art/all_enemies.png" id="2_0kcgg"]
+[ext_resource type="PackedScene" uid="uid://bu827glttonfl" path="res://scenes/zone_bullet/zone_bullet.tscn" id="2_0wg40"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wg40"]
+atlas = ExtResource("2_0kcgg")
+region = Rect2(125, 8, 24, 36)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0kcgg"]
+height = 34.0
+
+[node name="PirateBarrel" unique_id=1871860269 node_paths=PackedStringArray("shooting_marker") instance=ExtResource("1_p7v5c")]
+movement_enabled = true
+melee_enabled = true
+melee_distance = 13.0
+shooting_enabled = true
+shooting_scene = ExtResource("2_0wg40")
+shooting_marker = NodePath("ShootingPoint")
+
+[node name="Sprite2D" parent="." index="4" unique_id=1675653022]
+texture = SubResource("AtlasTexture_0wg40")
+offset = Vector2(-2, -17)
+
+[node name="CollisionShape2D" parent="." index="5" unique_id=1280122558]
+shape = SubResource("CapsuleShape2D_0kcgg")
+
+[node name="ShootingPoint" type="Marker2D" parent="." index="9" unique_id=1715365634]
+position = Vector2(-8, -14)
