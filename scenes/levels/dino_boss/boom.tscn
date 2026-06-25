@@ -3,45 +3,51 @@
 [ext_resource type="Texture2D" uid="uid://bv1x2albdaalg" path="res://assets/art/meteor_boom.png" id="1_dwra2"]
 [ext_resource type="Script" uid="uid://dch3hpj4ferxw" path="res://scenes/levels/dino_boss/boom.gd" id="2_gpi2q"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwra2"]
+atlas = ExtResource("1_dwra2")
+region = Rect2(0, 0, 143, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpi2q"]
+atlas = ExtResource("1_dwra2")
+region = Rect2(143, 0, 143, 143)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_fnfrb"]
 atlas = ExtResource("1_dwra2")
-region = Rect2(0, 0, 94, 74)
+region = Rect2(286, 0, 143, 143)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_we5tp"]
 atlas = ExtResource("1_dwra2")
-region = Rect2(94, 0, 94, 74)
+region = Rect2(429, 0, 143, 143)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lp4mj"]
 atlas = ExtResource("1_dwra2")
-region = Rect2(188, 0, 94, 74)
+region = Rect2(572, 0, 143, 143)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_psb2g"]
 atlas = ExtResource("1_dwra2")
-region = Rect2(282, 0, 94, 74)
+region = Rect2(715, 0, 143, 143)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ik7rd"]
 atlas = ExtResource("1_dwra2")
-region = Rect2(376, 0, 94, 74)
+region = Rect2(858, 0, 143, 143)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xgdi4"]
 atlas = ExtResource("1_dwra2")
-region = Rect2(470, 0, 94, 74)
+region = Rect2(1001, 0, 143, 143)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ci8ja"]
 atlas = ExtResource("1_dwra2")
-region = Rect2(564, 0, 94, 74)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_557dh"]
-atlas = ExtResource("1_dwra2")
-region = Rect2(658, 0, 94, 74)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o3i7w"]
-atlas = ExtResource("1_dwra2")
-region = Rect2(752, 0, 94, 74)
+region = Rect2(1144, 0, 143, 143)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v57cs"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwra2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpi2q")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fnfrb")
 }, {
@@ -62,12 +68,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ci8ja")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_557dh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o3i7w")
 }],
 "loop": false,
 "name": &"default",
@@ -77,6 +77,8 @@ animations = [{
 [node name="Boom" type="AnimatedSprite2D" unique_id=79665052]
 sprite_frames = SubResource("SpriteFrames_v57cs")
 autoplay = "default"
+frame = 8
+frame_progress = 1.0
 script = ExtResource("2_gpi2q")
 damage = 20
 mask = 9
