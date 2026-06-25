@@ -83,9 +83,9 @@ func _physics_process(_delta: float) -> void:
 
 	var flail_frozen_delta: int
 	if not _was_lobotomized:
-		flail.freeze = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not f_over_hole
+		flail.freeze = Input.is_action_pressed("drop_ball") and not f_over_hole
 		flail_frozen_delta = int(flail.freeze) - int(_last_grounded_flail != null)
-		player.freeze = Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and not p_over_hole
+		player.freeze = Input.is_action_pressed("drop_player") and not p_over_hole
 
 		if player.freeze and not flail.freeze:
 			player.linear_velocity = Vector2.ZERO

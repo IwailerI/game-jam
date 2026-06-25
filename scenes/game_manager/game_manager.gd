@@ -31,6 +31,12 @@ func _ready() -> void:
 	_ensure_music.call_deferred()
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if get_tree().current_scene and get_tree().current_scene.name == "LevelTemplate" and event.is_action_pressed("restart_level"):
+		_restart_level()
+		get_viewport().set_input_as_handled()
+
+
 func load_level(id: int) -> void:
 	assert(1 <= id and id <= _levels.size(), "level id out of bounds")
 	_current_level = id
@@ -46,8 +52,8 @@ func load_level(id: int) -> void:
 		e.player_exited.connect(_next_level, CONNECT_ONE_SHOT)
 
 	var cnb := ChainAndBalls.get_instance()
-	if not cnb.got_lobotomized.is_connected(_player_dead):
-		cnb.got_lobotomized.connect(_player_dead, CONNECT_ONE_SHOT)
+	if not cnb.got_lobotomized.is_connected(_restart_level):
+		cnb.got_lobotomized.connect(_restart_level, CONNECT_ONE_SHOT)
 
 	_ensure_music.call_deferred()
 
@@ -76,4 +82,8 @@ func _next_level() -> void:
 
 
 func _player_dead() -> void:
-	get_tree().create_timer(2.0).timeout.connect(load_level.bind(_current_level))
+	get_tree().create_timer(2.0).timeout.connect(_restart_level)
+
+
+func _restart_level() -> void:
+	load_level(_current_level)
