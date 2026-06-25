@@ -56,7 +56,7 @@ position = Vector2(979, 128)
 position = Vector2(1004.5013, 4.6901245)
 
 [node name="PirateBarrel2" parent="." index="15" unique_id=186736995 instance=ExtResource("4_cuc04")]
-position = Vector2(1704, -67)
+position = Vector2(1432, 16)
 
 [node name="SamuraiBasic3" parent="." index="16" unique_id=1264700216 instance=ExtResource("2_163xj")]
 position = Vector2(1639, -305)
