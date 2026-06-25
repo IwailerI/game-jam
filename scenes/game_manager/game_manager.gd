@@ -113,7 +113,7 @@ func _player_dead() -> void:
 
 
 func _restart_level() -> void:
-	load_level(_current_level)
+	Transition.reload_scene()
 
 
 func _play_dialog(s: String) -> void:
