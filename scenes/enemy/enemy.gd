@@ -30,6 +30,11 @@ var _melee_cooldown: float = 0.0
 var _shooting_cooldown: float = 0.0
 
 
+@export_subgroup("Burst fire", "burst")
+@export var burst_n: int = 1
+@export var burst_interval: float = 0.2
+
+
 @export_group("Knockback", "knockback")
 @export_custom(PROPERTY_HINT_GROUP_ENABLE, "") var knockback_enabled: bool = false
 @export var knockback_fading: float = 300.0
@@ -163,13 +168,11 @@ func _physics_process(delta: float) -> void:
 		if dist2 < shooting_distance*shooting_distance and _shooting_cooldown <= 0 and _knockback_velocity.is_zero_approx() and _player_is_visible_from(shooting_marker.global_position):
 			_shooting_cooldown = shooting_interval
 
-			var inst := shooting_scene.instantiate() as Node2D
-			if shooting_marker == null:
-				inst.global_position = global_position
+			if burst_n == 1:
+				_shoot()
 			else:
-				inst.global_position = shooting_marker.global_position
-
-			get_parent().add_child(inst)
+				var t := create_tween().set_loops(burst_n).set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+				t.tween_callback(_shoot).set_delay(burst_interval)
 
 		_shooting_cooldown -= delta
 		_shooting_cooldown = maxf(_shooting_cooldown, 0.0)
@@ -247,6 +250,18 @@ func _fall_into_a_hole() -> void:
 
 func _rand_sign() -> float:
 	return float(randi_range(0, 1) * 2 - 1)
+
+
+func _shoot() -> void:
+	var inst := shooting_scene.instantiate() as Node2D
+
+	get_parent().add_child(inst)
+
+	if shooting_marker == null:
+		inst.global_position = global_position
+	else:
+		inst.global_position = shooting_marker.global_position
+
 
 
 ## Public function, API expected by chain & balls

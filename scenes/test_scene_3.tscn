@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://b0o8j4byt0v64" path="res://scenes/enemy/samurai_armoured.tscn" id="10_45k7r"]
 [ext_resource type="AudioStream" uid="uid://dsayevgimoglo" path="res://assets/audio/music/main_loop.wav" id="10_vk42m"]
 [ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="11_f4bkh"]
+[ext_resource type="PackedScene" uid="uid://pqs00v1i6hyq" path="res://scenes/enemy/ww1_rifle.tscn" id="11_vk42m"]
 [ext_resource type="Texture2D" uid="uid://cge51wr7m3del" path="res://assets/art/hole_tilemap.png" id="12_vk42m"]
+[ext_resource type="PackedScene" uid="uid://cfpe6i2h63xow" path="res://scenes/enemy/ww1_machine_gun.tscn" id="12_wrc5m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2dlf"]
 texture = ExtResource("7_y2dlf")
@@ -176,3 +178,9 @@ position = Vector2(383.47852, 94.062164)
 position = Vector2(-73.00003, 213)
 
 [node name="SamuraiArmoured" parent="." unique_id=807001017 instance=ExtResource("10_45k7r")]
+
+[node name="WW1Rifle" parent="." unique_id=254192364 instance=ExtResource("11_vk42m")]
+position = Vector2(303.00064, 239.26965)
+
+[node name="WW1MachineGun" parent="." unique_id=648718267 instance=ExtResource("12_wrc5m")]
+position = Vector2(154, 89)

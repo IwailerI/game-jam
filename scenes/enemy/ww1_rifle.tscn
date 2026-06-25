@@ -11,14 +11,15 @@ region = Rect2(188, 14, 35, 30)
 [node name="WW1Rifle" unique_id=1871860269 node_paths=PackedStringArray("shooting_marker") instance=ExtResource("1_8tta4")]
 movement_enabled = true
 movement_speed = 25.0
-movement_stop_distance = 150.0
 melee_enabled = true
 melee_damage = 5
 melee_distance = 13.0
 shooting_enabled = true
 shooting_scene = ExtResource("2_5rbpi")
-shooting_interval = 2.0
+shooting_interval = 3.0
+shooting_distance = 150.0
 shooting_marker = NodePath("FlipGroup/Barrel")
+burst_n = 3
 knockback_multiplier = 1.2
 
 [node name="Barrel" type="Marker2D" parent="FlipGroup" parent_id_path=PackedInt32Array(1068944302) index="0" unique_id=1943733343]

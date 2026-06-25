@@ -20,9 +20,6 @@ dash_distance = 200.0
 dash_interval = 6.0
 dash_velocity = 370.0
 
-[node name="NavigationAgent2D" parent="." index="1" unique_id=1583476312]
-debug_enabled = true
-
 [node name="AnimationPlayer" parent="." index="2" unique_id=1884903029]
 next/flip = &"idle"
 

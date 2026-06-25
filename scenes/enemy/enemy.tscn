@@ -129,6 +129,7 @@ radius = 11.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1884903029]
 libraries/ = SubResource("AnimationLibrary_tjssy")
 autoplay = &"idle"
+next/flip = &"idle"
 
 [node name="HealthComponent" parent="." unique_id=1186933908 instance=ExtResource("2_40wdo")]
 

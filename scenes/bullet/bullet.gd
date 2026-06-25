@@ -21,6 +21,11 @@ func _ready() -> void:
 	look_at(_initial_player_pos)
 
 
+	(func () -> void:
+			_direction = global_position.direction_to(_initial_player_pos)
+			look_at(_initial_player_pos)).call_deferred()
+
+
 func _process(delta: float) -> void:
 	position += _direction * speed * delta
 
