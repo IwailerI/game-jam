@@ -5,7 +5,7 @@ class MusicEntry:
 	var preloop_path: String
 	var loop_path: String
 
-	func _init(new_preloop_path: String, new_loop_path: String):
+	func _init(new_preloop_path: String, new_loop_path: String) -> void:
 		preloop_path = new_preloop_path
 		loop_path = new_loop_path
 
