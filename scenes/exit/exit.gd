@@ -38,7 +38,7 @@ func _update_visual() -> void:
 
 
 func _check_player(silent: bool = false) -> void:
-	if _enemies_left >= 0 and not silent:
+	if _enemies_left > 0 and not silent:
 		var inst: Label = label.duplicate()
 		add_child(inst)
 

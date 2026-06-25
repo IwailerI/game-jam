@@ -42,6 +42,7 @@ var _was_lobotomized: bool = false
 @onready var chain: Line2D = $Chain
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var flail_hurt_box: Area2D = %HurtBox
+@onready var shadow: Sprite2D = %Shadow
 
 @onready var player_sprite: Sprite2D = $Player/Sprite2D
 
@@ -307,7 +308,13 @@ func _fall_into_a_hole() -> void:
 	_labotomize()
 
 	health_component.damage.call_deferred(999999999)
-	modulate.a = 0.5
+
+	var t := create_tween().set_parallel()
+	t.tween_property(player_sprite, "rotation", TAU * 3, 2).as_relative()
+	t.tween_property(player_sprite, "modulate:a", 0, 2)
+	shadow.hide()
+
+	player.freeze = true
 
 
 func zone_damage(dmg: int) -> void:
