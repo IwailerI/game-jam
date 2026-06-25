@@ -31,6 +31,8 @@ func _ready() -> void:
 			_hide_all()
 			main.show())
 
+	if Persistence.best_score == 0:
+		button_continue.text = "New Game"
 	button_continue.pressed.connect(func () -> void:
 		GameManager.load_level(Persistence.best_score+1))
 	button_continue.disabled = Persistence.best_score >= GameManager.last_level()

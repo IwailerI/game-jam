@@ -10,6 +10,8 @@ const GroundedFlail := preload("res://scenes/chain_and_balls/grounded_flail_ball
 const _FAST_HIT_EFFECT := preload("res://scenes/chain_and_balls/fast_hit_effect.tscn")
 const _LAND_EFFECT := preload("res://scenes/chain_and_balls/land_effect.tscn")
 
+const _DEAD_PLAYER_SPRITE := preload("res://assets/art/dead_ass.png")
+
 enum FlailVelocityBucket {SLOW, NORMAL, FAST}
 
 @export_category("Forces")
@@ -76,22 +78,24 @@ func _physics_process(_delta: float) -> void:
 	var p_over_hole := _is_over_hole(player.global_position)
 	var f_over_hole := _is_over_hole(flail.global_position)
 
-	flail.freeze = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not f_over_hole
-	var flail_frozen_delta := int(flail.freeze) - int(_last_grounded_flail != null)
-	player.freeze = Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and not p_over_hole
+	var flail_frozen_delta: int
+	if not _was_lobotomized:
+		flail.freeze = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not f_over_hole
+		flail_frozen_delta = int(flail.freeze) - int(_last_grounded_flail != null)
+		player.freeze = Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and not p_over_hole
 
-	if player.freeze and not flail.freeze:
-		player.linear_velocity = Vector2.ZERO
-		flail.apply_central_force((get_global_mouse_position() - flail.global_position).normalized() * force_f)
-	elif not player.freeze and flail.freeze:
-		flail.linear_velocity = Vector2.ZERO
-		player.apply_central_force((get_global_mouse_position() - player.global_position).normalized() * force_p)
+		if player.freeze and not flail.freeze:
+			player.linear_velocity = Vector2.ZERO
+			flail.apply_central_force((get_global_mouse_position() - flail.global_position).normalized() * force_f)
+		elif not player.freeze and flail.freeze:
+			flail.linear_velocity = Vector2.ZERO
+			player.apply_central_force((get_global_mouse_position() - player.global_position).normalized() * force_p)
 
 	if player.freeze:
 		player_sprite.frame_coords.y = 1
 		if not _player_frozen_state:
 			_player_frozen_state = true
-			var inst := _LAND_EFFECT.instantiate()
+			var inst: Node2D = _LAND_EFFECT.instantiate()
 			add_child(inst)
 			inst.global_position = player.global_position
 			if not _was_lobotomized:
@@ -198,6 +202,10 @@ func _on_died() -> void:
 	if _was_lobotomized:
 		return
 	_labotomize()
+	player_sprite.texture = _DEAD_PLAYER_SPRITE
+	player_sprite.vframes = 1
+	player_sprite.hframes = 1
+	player_sprite.offset.y += 8
 
 
 func _get_flail_velocity_bucket() -> FlailVelocityBucket:

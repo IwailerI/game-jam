@@ -69,7 +69,7 @@ func _next_level() -> void:
 	Persistence.submit()
 
 	if _current_level >= last_level():
-		await load_level(last_level())
+		Transition.change_scene_path('res://ui/menus/main_menu/main_menu.tscn')
 		return
 
 	await load_level(_current_level + 1)
