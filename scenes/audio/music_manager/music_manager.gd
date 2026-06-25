@@ -70,3 +70,21 @@ func ensure_playing(key: String) -> void:
 func _do_loop() -> void:
 	_player.stream = _selected_loop
 	_player.play()
+
+
+func fade_to_stop(fade_duration: float) -> void:
+	var t := _player.create_tween()
+
+	t.tween_property(_player, "volume_db", -50, fade_duration)
+	t.tween_callback(func() -> void:
+		_player.volume_db = 0
+		stop_music()
+	)
+
+
+func stop_music() -> void:
+	_player.stop()
+	_have_selected_entry = false
+	_selected_entry_key = ""
+	_selected_loop = null
+	_selected_preloop = null

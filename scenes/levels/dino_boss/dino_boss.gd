@@ -51,6 +51,8 @@ func _on_boss_died() -> void:
 		boss_camera.enabled = false
 	)
 
+	MusicManager.fade_to_stop(2)
+
 
 var _initial_pos: Vector2
 var _initial_zoom: Vector2
