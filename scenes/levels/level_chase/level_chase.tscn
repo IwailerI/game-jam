@@ -305,3 +305,6 @@ monitoring = false
 position = Vector2(21, 0)
 shape = SubResource("RectangleShape2D_ehncc")
 debug_color = Color(0, 0.6276612, 0.49665374, 0.41960785)
+
+[node name="RegularLevelMusicManager" parent="." index="11" unique_id=880449124]
+start_music = false
