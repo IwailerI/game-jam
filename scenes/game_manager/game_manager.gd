@@ -1,7 +1,11 @@
 extends Node
 
 
+const DIALOG_SCENE := preload("res://scenes/dialogue/dialogue.tscn")
+
 var _levels: Array[String]
+var _pre_dialogs: Array[String]
+var _final_dialog: String
 var _current_level: int
 
 
@@ -14,17 +18,36 @@ func _init() -> void:
 		push_error("no levels.txt")
 		return
 
+	var last_dialog: String = ""
+	var found_dialogs: int = 0
+
 	while not f.eof_reached():
 		var l := f.get_line().strip_edges()
 
 		if l.begins_with("#") or l == "":
 			continue
 
+		if l.begins_with("dialog:"):
+			if last_dialog != "":
+				push_error("multiple dialog: lines")
+				continue
+
+			found_dialogs += 1
+			last_dialog = l.trim_prefix("dialog:").strip_edges()
+			continue
+
+		_pre_dialogs.push_back(last_dialog)
+		last_dialog = ""
+
 		_levels.push_back(l)
+
+	if last_dialog != "":
+		_final_dialog = last_dialog
+
 
 	f.close()
 
-	print("[GamaManager] discovered %d levels" % _levels.size())
+	print("[GamaManager] discovered %d levels, %d dialogs" % [_levels.size(), found_dialogs])
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -42,6 +65,10 @@ func load_level(id: int) -> void:
 	_current_level = id
 
 	print("[GamaManager] loading level %d (%s)" % [id, _levels[id-1]])
+
+	if _pre_dialogs[id-1] != "":
+		print("[GamaManager] but first a little story (%s)..." % _pre_dialogs[id-1])
+		await _play_dialog(_pre_dialogs[id-1])
 
 	await Transition.change_scene_path(_levels[id-1])
 
@@ -69,6 +96,12 @@ func _next_level() -> void:
 	Persistence.submit()
 
 	if _current_level >= last_level():
+		print("[GameManager] last level completed")
+
+		if _final_dialog != "":
+			print("[GameManager] playing ending cutscene")
+			await _play_dialog(_final_dialog)
+
 		Transition.change_scene_path('res://ui/menus/main_menu/main_menu.tscn')
 		return
 
@@ -81,3 +114,10 @@ func _player_dead() -> void:
 
 func _restart_level() -> void:
 	load_level(_current_level)
+
+
+func _play_dialog(s: String) -> void:
+	var inst: DialogueManager = DIALOG_SCENE.instantiate()
+	inst.scenario = FileAccess.get_file_as_string(s)
+	Transition.change_scene_instance(inst)
+	await inst.finished

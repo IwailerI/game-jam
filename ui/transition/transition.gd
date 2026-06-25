@@ -47,9 +47,11 @@ func change_scene_path(path: String) -> void:
 ## Useful if scene require some prior setup e.g. gameover menu having stats from gamemanager.
 ##
 ## Example:
+## [code]
 ##	func gameover() -> void:
 ##		var scene: Node = load('scenes/gameover/gameover.tscn').instantiate()
 ##		Transition.change_scene_instance(scene)
+## [/code]
 func change_scene_instance(scene: Node) -> void:
 	await fade_in()
 	get_tree().root.add_child(scene)

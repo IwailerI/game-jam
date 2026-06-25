@@ -1,4 +1,6 @@
+dialog: res://assets/dialogue/intro.txt
 res://scenes/levels/level01.tscn
+
 res://scenes/levels/level02.tscn
 res://scenes/levels/level03.tscn
 res://scenes/levels/level04.tscn
