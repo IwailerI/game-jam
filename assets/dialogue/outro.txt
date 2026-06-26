@@ -3,11 +3,15 @@
 # P - phone
 # N - narrator
 
-P James, this dialog is not implemented.
-J I know.
-J Can i at least bring the flail home?
-P No.
-N [wave]*epic explosion*[/wave]
-
+N James narrowly escapes from crumbling museum.
 J My name is Balld
-J I'm bald
+P Yes, James I kno..
+J I'm bald.
+P James? I'm your handler?
+J James Balld.
+P ...
+J And I have a flail.
+P Where are the tanks James?
+J Fell into a hole?
+P [shake]You know what?[/shake] I've head enough of [shake]this[/shake].
+N -- CALL ENDED --
