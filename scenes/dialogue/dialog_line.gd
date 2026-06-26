@@ -10,6 +10,7 @@ var data: String
 var tween: Tween
 
 @onready var rich_text_label: RichTextLabel = %RichTextLabel
+@onready var sfx_player: SfxPlayer = %SfxPlayer
 
 
 func _ready() -> void:
@@ -20,6 +21,7 @@ func _ready() -> void:
 	tween.set_loops(data.length())
 	tween.tween_callback(func () -> void:
 		rich_text_label.visible_characters += 1
+		sfx_player.play_sound("char")
 	).set_delay(1.0 / cps)
 
 	tween.finished.connect(func () -> void:
