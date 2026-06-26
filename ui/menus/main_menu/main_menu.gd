@@ -43,8 +43,10 @@ func _ready() -> void:
 
 	MusicManager.ensure_playing.call_deferred("main_menu")
 
-	print("Hard mode is %s" % ("ENABLED" if SettingsCfg.hard_mode() else "DISABLED"))
-	hard_mode_checkbox.set_pressed_no_signal(SettingsCfg.hard_mode())
+	var hard_mode := SettingsCfg.hard_mode()
+	print("[%s] Hard mode is %s" % [name, ("ENABLED" if hard_mode else "DISABLED")])
+
+	hard_mode_checkbox.set_pressed_no_signal(hard_mode)
 	hard_mode_checkbox.toggled.connect(SettingsCfg.set_hard_mode)
 
 

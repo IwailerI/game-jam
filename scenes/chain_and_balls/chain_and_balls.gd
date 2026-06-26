@@ -67,7 +67,10 @@ func _ready() -> void:
 	flail_hurt_box.body_entered.connect(_on_flail_enemy_entered)
 	flail_hurt_box.area_entered.connect(_on_flail_enemy_entered)
 
-	if not SettingsCfg.hard_mode():
+	var hard_mode := SettingsCfg.hard_mode()
+	print("[%s] Hard mode is %s" % [name, ("ENABLED" if hard_mode else "DISABLED")])
+
+	if not hard_mode:
 		health_component.initial_health *= 2
 		health_component.health *= 2
 		damage_normal *= 2
