@@ -10,7 +10,7 @@ J I'm bald.
 P James? I'm your handler?
 J James Balld.
 P ...
-J And I have a flail.
+J [wave]And I have a flail[/wave].
 P Where are the tanks James?
 J Fell into a hole?
 P [shake]You know what?[/shake] I've head enough of [shake]this[/shake].

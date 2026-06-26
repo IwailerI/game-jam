@@ -5,6 +5,7 @@ extends Node2D
 signal got_lobotomized
 
 const _GROUNDED_FLAIL := preload("res://scenes/chain_and_balls/grounded_flail_ball.tscn")
+const _GROUNDED_FLAIL2 := preload("res://scenes/chain_and_balls/grounded_flail_ball_phase2.tscn")
 const GroundedFlail := preload("res://scenes/chain_and_balls/grounded_flail_ball.gd")
 
 const _FAST_HIT_EFFECT := preload("res://scenes/chain_and_balls/fast_hit_effect.tscn")
@@ -13,6 +14,8 @@ const _LAND_EFFECT := preload("res://scenes/chain_and_balls/land_effect.tscn")
 const _DEAD_PLAYER_SPRITE := preload("res://assets/art/dead_ass.png")
 
 enum FlailVelocityBucket {SLOW, NORMAL, FAST}
+
+@export var phase2: bool = false
 
 @export_category("Forces")
 @export var force_p: float = 100.0
@@ -128,7 +131,11 @@ func _physics_process(_delta: float) -> void:
 		1: # just landed
 			if is_instance_valid(_last_grounded_flail):
 				_last_grounded_flail.queue_free()
-			_last_grounded_flail = _GROUNDED_FLAIL.instantiate()
+
+			var scn := _GROUNDED_FLAIL
+			if phase2:
+				scn = _GROUNDED_FLAIL2
+			_last_grounded_flail = scn.instantiate()
 			flail.hide()
 			add_child(_last_grounded_flail)
 			_last_grounded_flail.global_position = flail.global_position

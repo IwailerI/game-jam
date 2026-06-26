@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://druhm3lms3rg0"]
+
+[ext_resource type="PackedScene" uid="uid://cjh8bvdq7wm2i" path="res://scenes/chain_and_balls/grounded_flail_ball.tscn" id="1_u5p01"]
+[ext_resource type="Texture2D" uid="uid://c7hgkodikr2tv" path="res://assets/art/crater_NEW_2.png" id="2_iol36"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cecm2"]
+atlas = ExtResource("2_iol36")
+region = Rect2(50, 0, 31, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73wi6"]
+atlas = ExtResource("2_iol36")
+region = Rect2(0, 5, 43, 23)
+
+[node name="GroundedFlailBall" unique_id=1231403854 instance=ExtResource("1_u5p01")]
+
+[node name="BG" parent="." index="0" unique_id=269022617]
+texture = SubResource("AtlasTexture_cecm2")
+
+[node name="FG" parent="." index="2" unique_id=18499017]
+texture = SubResource("AtlasTexture_73wi6")
+
+[node name="Animation" parent="." index="3" unique_id=353232728]
+modulate = Color(0.6277897, 0.4831919, 0.38295996, 1)
+frame = 5
+frame_progress = 1.0
