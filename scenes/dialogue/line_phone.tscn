@@ -9,6 +9,7 @@
 layout_mode = 2
 texture = ExtResource("2_tkd6t")
 stretch_mode = 2
+flip_h = true
 
 [node name="VSeparator2" type="VSeparator" parent="." index="1" unique_id=185249973]
 layout_mode = 2
