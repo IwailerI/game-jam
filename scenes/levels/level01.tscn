@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvrntil0je6ef" path="res://assets/art/big_arrow.png" id="2_msin7"]
 [ext_resource type="Texture2D" uid="uid://byvhll15mx2t0" path="res://assets/art/input-pictograms.png" id="3_g0jr5"]
 [ext_resource type="PackedScene" uid="uid://81bkieco5bp2" path="res://scenes/case/case.tscn" id="4_i4uh8"]
+[ext_resource type="Script" uid="uid://clo2icc5iaql" path="res://scenes/levels/cheat_button.gd" id="5_qwlqn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3n7h2"]
 vertices = PackedVector2Array(-361.71875, -108, -356, -113.71875, -356, -108, -396, -44, 22.28125, -108, 24.242188, -109.96094, 24.460938, -109.15625, 116.703125, -121, 115.89844, -124, 164, -124, 292, -553.71875, 292, -556, 332, -556, 332, -553.71875, 388, -553.71875, 388, -556, 412, -556, 412, -372, 374.28125, -540, 396, -372, 396, -316, 412, -316, 412, -116, 409.71875, -116, 180, -182.28125, 166.28125, -196, 180, -300, 409.71875, -60, 412, -60, 412, 124, 308, 124, 308, 108, 236, 108, 236, 124, 228, 124, 228, 108, -6.28125, -108, 156, 108, 156, 124, -92, 124, -92, 108, -28, -108, -20, -121.71875, -196, 108, -196, 124, -252, 124, -252, 121.71875, -308, 121.71875, -308, 124, -348, 124, -348, 121.71875, -404, 121.71875, -404, 124, -412, 124, -412, 84, -390.28125, 108, -396, 84, -396, -4, -412, -4, -412, -44, -396, -100, -412, -100, -412, -124, -404, -121.71875, -390.28125, -108, -404, -124, -220, -108, -220, -124, -164, -124, -164, -108, -28, -124, -20, -124, 164, -140, 166.28125, -140, 396, -102.28125, 396, -73.71875, 164, -196, 164, -300, 180, -356, 164, -356, 164, -540, 228, -540, 228, -556, 236, -556, 236, -553.71875, 249.71875, -540, 345.71875, -540, -361.71875, 108, 33.15625, -100.46094, 113.53906, -109.15625, 278.28125, -540, -265.71875, 108, -294.28125, 108, 42.382813, -98, 95.61719, -98, 104.84375, -100.46094, 180, -153.71875)
@@ -43,6 +44,18 @@ region = Rect2(111, 9, 18, 18)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qjm5h"]
 atlas = ExtResource("3_g0jr5")
 region = Rect2(102, 43, 16, 17)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_chssp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3yqkj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_if0f4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ylsda"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qjm5h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y32f7"]
 
 [node name="LevelTemplate2" unique_id=669825193 instance=ExtResource("1_3n7h2")]
 
@@ -171,3 +184,17 @@ texture = ExtResource("2_msin7")
 
 [node name="Case" parent="." index="9" unique_id=1575121528 instance=ExtResource("4_i4uh8")]
 position = Vector2(69, -117)
+
+[node name="CheatButton" type="Button" parent="." index="10" unique_id=861034326]
+offset_left = 440.0
+offset_top = 151.0
+offset_right = 480.0
+offset_bottom = 192.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_chssp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3yqkj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_if0f4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ylsda")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qjm5h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y32f7")
+button_mask = 4
+script = ExtResource("5_qwlqn")
