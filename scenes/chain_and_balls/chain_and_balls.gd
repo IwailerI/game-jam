@@ -83,7 +83,6 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	player_sprite.global_rotation = 0
 
-
 	if not _was_lobotomized:
 		if player.global_position.x > flail.global_position.x:
 			player_sprite.flip_h = true
@@ -92,6 +91,12 @@ func _physics_process(_delta: float) -> void:
 
 	var p_over_hole := _is_over_hole(player.global_position)
 	var f_over_hole := _is_over_hole(flail.global_position)
+
+	var should_capture := Input.is_action_pressed("drop_ball") or Input.is_action_pressed("drop_player")
+	if should_capture:
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	var flail_frozen_delta: int
 	if not _was_lobotomized:
