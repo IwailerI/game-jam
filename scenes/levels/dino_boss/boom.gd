@@ -8,6 +8,8 @@ const RADIUS: float = 64.0
 
 @export_flags_2d_physics var mask: int = 1
 
+@onready var sfx_player: SfxPlayer = $SfxPlayer
+
 
 func _ready() -> void:
 	execute.call_deferred()
@@ -43,3 +45,6 @@ func execute() -> void:
 	t.tween_interval(3.0)
 	t.chain().tween_property(self, "modulate:a", 0.0, 1.0)
 	t.chain().tween_callback(queue_free)
+
+	sfx_player.play_sound("meteor")
+	sfx_player.prepare_to_die()

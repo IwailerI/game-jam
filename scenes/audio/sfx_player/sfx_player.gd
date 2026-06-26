@@ -4,6 +4,9 @@ extends Node2D
 
 @export var audio_streams: Dictionary[String, AudioStream]
 
+# this is a crutch so that the @exports are backwards compatible
+@export var volume_overrides: Dictionary[String, float]
+
 var players: Dictionary[String, AudioStreamPlayer2D]
 var time_left_to_finish_all: float = 0
 var prepared_to_die: bool = false
@@ -18,6 +21,11 @@ func _ready() -> void:
 		players[key] = player
 		player.name = key
 		player.stream = audio_streams[key]
+
+		if key in volume_overrides:
+			var volume_db: float = volume_overrides[key]
+			player.volume_db += volume_db
+
 		add_child(player)
 
 
