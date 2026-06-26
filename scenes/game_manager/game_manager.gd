@@ -72,6 +72,18 @@ func load_level(id: int) -> void:
 
 	await Transition.change_scene_path(_levels[id-1])
 
+	_initialize_level()
+
+
+
+func last_level() -> int:
+	return _levels.size()
+
+
+func current_level() -> int:
+	return _current_level
+
+func _initialize_level() -> void:
 	if not get_tree().current_scene.is_node_ready():
 		await get_tree().current_scene.ready
 
@@ -81,14 +93,6 @@ func load_level(id: int) -> void:
 	var cnb := ChainAndBalls.get_instance()
 	if not cnb.got_lobotomized.is_connected(_restart_level):
 		cnb.got_lobotomized.connect(_restart_level, CONNECT_ONE_SHOT)
-
-
-func last_level() -> int:
-	return _levels.size()
-
-
-func current_level() -> int:
-	return _current_level
 
 
 func _next_level() -> void:
@@ -113,7 +117,8 @@ func _player_dead() -> void:
 
 
 func _restart_level() -> void:
-	Transition.reload_scene()
+	await Transition.reload_scene()
+	_initialize_level()
 
 
 func _play_dialog(s: String) -> void:
