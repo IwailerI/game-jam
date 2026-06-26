@@ -29,6 +29,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if is_instance_valid(tween) and event.is_action_pressed("dialog_skip"):
+	if is_instance_valid(tween) and tween.is_running() and event.is_action_pressed("dialog_skip"):
 		get_viewport().set_input_as_handled()
 		tween.custom_step(1e100)
+		tween = null

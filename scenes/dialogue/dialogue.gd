@@ -18,7 +18,6 @@ func _ready() -> void:
 func _run() -> void:
 	await get_tree().create_timer(2.0).timeout
 
-
 	const LINE_JAMES: PackedScene = preload("res://scenes/dialogue/line_james.tscn")
 	const LINE_PHONE: PackedScene = preload("res://scenes/dialogue/line_phone.tscn")
 
@@ -49,7 +48,10 @@ func _run() -> void:
 
 		var inst: DialogLine = scn.instantiate()
 		inst.data = data
+
 		container.add_child(inst)
+
+		await get_tree().process_frame
 		scroll.ensure_control_visible(inst)
 
 		await inst.done
@@ -61,6 +63,8 @@ func _run() -> void:
 	l.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	container.add_child(HSeparator.new())
 	container.add_child(l)
+
+	await get_tree().process_frame
 	scroll.ensure_control_visible(l)
 
 	_soft_finished = true
